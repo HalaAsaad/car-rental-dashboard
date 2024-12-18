@@ -1,0 +1,32 @@
+{
+  "2024-12-02": [
+    {
+      "brand": "HYUNDAI",
+      "carId": "DCWA-680",
+      "carIdObject": "673bc2310f16e58a118f1fb3",
+      "eventType": "Maintenance Reminder"
+    }
+  ],
+  "2024-12-03": [
+    {
+      "brand": "HYUNDAI",
+      "carId": "DCWA-680",
+      "carIdObject": "673bc2310f16e58a118f1fb3",
+      "eventType": "Maintenance Reminder"
+    }
+  ],
+  "2024-12-23": [
+    {
+      "brand": "HONDA",
+      "carId": "DCWA-763",
+      "carIdObject": "673bc30c0f16e58a118f1ffd",
+      "eventType": "Maintenance Reminder"
+    },
+    {
+      "brand": "HYUNDAI",
+      "carId": "DCWA-583",
+      "carIdObject": "673bc39c0f16e58a118f2012",
+      "eventType": "Maintenance Reminder"
+    }
+  ]
+}

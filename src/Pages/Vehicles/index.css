@@ -1,0 +1,202 @@
+/* react-multi-date-picker style */
+:root {
+  --rmdp-primary-red: #ef0a0a;
+  --rmdp-secondary-red: #ad8787;
+  --rmdp-shadow-red: #cfb6b6;
+  --rmdp-today-red: #ff5638;
+  --rmdp-hover-red: #ff6687;
+  --rmdp-deselect-red: #af1738;
+}
+
+.red .rmdp-wrapper {
+  border: 1px solid var(--rmdp-secondary-red) !important;
+  box-shadow: 0 0 5px var(--rmdp-secondary-red) !important;
+}
+
+.red .rmdp-panel-body li {
+  background-color: var(--rmdp-primary-red) !important;
+  box-shadow: 0 0 2px var(--rmdp-secondary-red) !important;
+}
+
+.red .rmdp-week-day {
+  color: var(--rmdp-primary-red) !important;
+}
+
+.red .rmdp-day.rmdp-deactive {
+  color: var(--rmdp-secondary-red) !important;
+}
+
+.red .rmdp-range,
+.rmdp-day:has(.booked-day) {
+  background-color: var(--rmdp-primary-red) !important;
+  box-shadow: 0 0 3px var(--rmdp-shadow-red) !important;
+}
+
+.red .rmdp-arrow {
+  border: solid var(--rmdp-primary-red) !important;
+  border-width: 0 2px 2px 0 !important;
+}
+
+/* .red .rmdp-arrow-container:hover {
+  background-color: var(--rmdp-primary-red) !important;
+  box-shadow: 0 0 3px var(--rmdp-secondary-red) !important;
+} */
+
+.red .rmdp-panel-body::-webkit-scrollbar-thumb {
+  background: var(--rmdp-primary-red) !important;
+}
+.order-picker .rmdp-week .rmdp-day:not(.rmdp-range):not(.rmdp-today) span {
+  color: #808080 !important;
+}
+.rmdp-day span {
+  border-bottom-left-radius: 35px !important;
+  border-top-left-radius: 35px !important;
+  border-bottom-right-radius: 35px !important;
+  border-top-right-radius: 35px !important;
+  /* font-family: Quicksand; */
+}
+.red .rmdp-day.rmdp-today span {
+  background-color: var(--rmdp-today-red) !important;
+}
+
+.red .rmdp-rtl .rmdp-panel {
+  border-left: unset !important;
+  border-right: 1px solid var(--rmdp-secondary-red) !important;
+}
+
+.red .rmdp-day.rmdp-selected span:not(.highlight) {
+  background-color: var(--rmdp-primary-red) !important;
+  box-shadow: 0 0 3px var(--rmdp-shadow-red) !important;
+}
+
+.red .rmdp-day:not(.rmdp-day-hidden) span:hover {
+  background-color: var(--rmdp-hover-red) !important;
+}
+
+.red .b-deselect {
+  color: var(--rmdp-deselect-red) !important;
+  background-color: white !important;
+}
+
+.red .rmdp-action-button {
+  color: var(--rmdp-primary-red) !important;
+}
+
+.red .rmdp-button:not(.rmdp-action-button) {
+  background-color: var(--rmdp-primary-red) !important;
+}
+
+.red .rmdp-button:not(.rmdp-action-button):hover {
+  background-color: var(--rmdp-deselect-red) !important;
+}
+.rmdp-shadow {
+  /* box-shadow: 0px 8px 24px 0px #4545501a !important; */
+  box-shadow: unset !important;
+}
+.rmdp-calendar {
+  width: 100% !important;
+}
+.rmdp-day-picker,
+.rmdp-day-picker > div {
+  width: 100% !important;
+}
+.rmdp-day {
+  width: 100% !important;
+}
+.rmdp-range-hover.start:not(.force),
+.rmdp-range.start:not(.force) {
+  border-bottom-left-radius: 35px !important;
+  border-top-left-radius: 35px !important;
+}
+.rmdp-range-hover.end:not(.force),
+.rmdp-range.end:not(.force) {
+  border-bottom-right-radius: 35px !important;
+  border-top-right-radius: 35px !important;
+}
+/* End react-multi-date-picker style */
+
+/** Details comp **/
+.oneImage {
+  width: 100px;
+  /* height: 93px; */
+  /* height: calc(100% / 3.7); */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-position: center !important;
+  /* padding: 30px; */
+  flex-shrink: 0;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+  box-shadow: 0 1px 2px #00000075;
+}
+/** End Details comp **/
+
+.details-calendar .rmdp-header {
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 25px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #191919;
+}
+.details-calendar .rmdp-arrow {
+  color: #767676 !important;
+  width: 12px;
+  height: 12px;
+  border-color: #767676;
+}
+.details-calendar .rmdp-week-day {
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 25px;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #191919 !important;
+  width: 100%;
+}
+.details-calendar .rmdp-day {
+  /* font-family: Quicksand; */
+  /* padding-top: 20px;
+  padding-bottom: 20px; */
+
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.details-calendar .rmdp-day:has(.start-range) {
+  border-bottom-left-radius: 35px !important;
+  border-top-left-radius: 35px !important;
+}
+.details-calendar .rmdp-day:has(.end-range) {
+  /* borderBottomRightRadius: "35px !important",
+   borderTopRightRadius: "35px !important", */
+  border-top-right-radius: 35px !important;
+  border-bottom-right-radius: 35px !important;
+}
+.details-calendar .booked-day span {
+  /* font-family: Quicksand !important; */
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  line-height: 25px !important;
+  text-align: center !important;
+  color: #ffffff !important;
+}
+.details-calendar .not-booked-day span {
+  /* font-family: Quicksand !important; */
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  line-height: 25px !important;
+  text-align: center !important;
+  color: #808080 !important;
+}

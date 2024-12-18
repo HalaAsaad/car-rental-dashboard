@@ -1,0 +1,118 @@
+.custom-calender .rmdp-header .rmdp-header-values {
+  margin: unset !important;
+  margin-bottom: 10px !important;
+}
+.custom-calender .rmdp-header .rmdp-header-values span:first-of-type {
+  font-family: "Montserrat";
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 35px;
+  text-align: center;
+}
+.custom-calender .rmdp-header .rmdp-header-values span:last-of-type {
+  font-family: "Montserrat";
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 35px;
+  text-align: center;
+}
+.custom-calender .rmdp-header .rmdp-left {
+  margin-left: auto !important;
+}
+.custom-calender .rmdp-header .rmdp-arrow {
+  width: 13px !important;
+  height: 13px !important;
+  color: #252525 !important;
+}
+.custom-calender .day_number_paragraph {
+  font-family: "Montserrat";
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  margin-bottom: 7px;
+  border-radius: 50%;
+  font-weight: 500;
+  font-size: 14px;
+}
+.custom-calender .view_more_p {
+  font-family: Montserrat;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 8.75px;
+  text-align: right;
+  color: #ef0a0a;
+  cursor: pointer;
+}
+.custom-calender .rmdp-week-day {
+  color: #252525 !important;
+  font-family: "Montserrat";
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 15px;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+/* .custom-calender .rmdp-day {
+  height: unset !important;
+} */
+/* .rmdp-day,
+.rmdp-week-day {
+  min-height: 50px;
+} */
+/* .rmdp-week > .rmdp-day-0 {
+  height: 100px !important;
+} */
+/* .rmdp-week {
+  height: 50px;
+} */
+.custom-calender .rmdp-week {
+  margin-bottom: 5px;
+}
+.custom-calender .rmdp-week:has(.rmdp-day-0) {
+  height: 90px;
+}
+.custom-calender .rmdp-week:has(.rmdp-day-1) {
+  height: 90px;
+}
+.custom-calender .rmdp-week:has(.rmdp-day-2) {
+  height: 150px;
+}
+.custom-calender .rmdp-week:has(.rmdp-day-3) {
+  height: 200px;
+}
+.custom-calender .rmdp-week:has(.rmdp-day-4) {
+  height: 230px;
+}
+.custom-calender .rmdp-week > div {
+  height: 100%;
+}
+.custom-calender .event-label {
+  font-family: Montserrat !important;
+  font-size: 10px !important;
+  font-weight: 400 !important;
+  text-align: left !important;
+  color: #252525;
+}
+.custom-calender .rmdp-day.rmdp-today span {
+  background-color: #fff !important;
+  /* color: #ef0a0a !important;
+  font-weight: 700; */
+}
+.custom-calender .rmdp-day span {
+  height: fit-content !important;
+}
+.custom-calender .rmdp-day:not(.rmdp-day-hidden) span:hover {
+  background-color: #fff !important;
+}
+.red .rmdp-arrow-container:hover {
+  background-color: #fff !important;
+}
+/* .custom-calender .rmdp-arrow-container:hover {
+  background-color: var(--rmdp-primary-red) !important;
+  box-shadow: 0 0 3px var(--rmdp-secondary-red) !important;
+  color: #fff;
+} */

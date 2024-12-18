@@ -1,0 +1,48 @@
+[
+  {
+    "permissions": {
+      "vehicles": {
+        "view": true,
+        "create": true,
+        "delete": true,
+        "edit": true
+      },
+      "orders": {
+        "view": true,
+        "create": true,
+        "delete": true,
+        "edit": true
+      },
+      "users": {
+        "view": true,
+        "create": true,
+        "delete": true,
+        "edit": true
+      },
+      "customers": {
+        "view": true,
+        "create": true,
+        "delete": true,
+        "edit": true
+      },
+      "roles": {
+        "view": true,
+        "create": true,
+        "delete": true,
+        "edit": true
+      },
+      "dashboard": {
+        "view": true
+      },
+      "reports": {
+        "view": true
+      },
+      "calendar": {
+        "view": true
+      }
+    },
+    "_id": "675b584c127347f4584c3201",
+    "name": "Admin",
+    "__v": 0
+  }
+]

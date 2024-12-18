@@ -1,0 +1,114 @@
+[
+  {
+    "_id": "675b5939465114e43655149a",
+    "name": "John Doe",
+    "email": "john.doe@example.com",
+    "password": "$2a$12$bxjMsDbQdvqdvx0K867cDOACVBFogEaqgP6hJT9AlYDgcpztJ8wne",
+    "mobile": "+1234567890",
+    "state": "active",
+    "role": {
+      "permissions": {
+        "vehicles": {
+          "view": true,
+          "create": true,
+          "delete": true,
+          "edit": true
+        },
+        "orders": {
+          "view": true,
+          "create": true,
+          "delete": true,
+          "edit": true
+        },
+        "users": {
+          "view": true,
+          "create": true,
+          "delete": true,
+          "edit": true
+        },
+        "customers": {
+          "view": true,
+          "create": true,
+          "delete": true,
+          "edit": true
+        },
+        "roles": {
+          "view": true,
+          "create": true,
+          "delete": true,
+          "edit": true
+        },
+        "dashboard": {
+          "view": true
+        },
+        "reports": {
+          "view": true
+        },
+        "calendar": {
+          "view": true
+        }
+      },
+      "_id": "675b584c127347f4584c3201",
+      "name": "Admin",
+      "__v": 0
+    },
+    "tokenVersion": 1,
+    "__v": 0
+  },
+  {
+    "_id": "675b59a9c5e4eaad6e2afbfe",
+    "name": "Ahmad Kilani",
+    "email": "info@skylinerental.net",
+    "password": "$2a$12$qlyU4N9XiS8.NA1M/VWE5OAL.UjLpZLwbrrSF4lKlFaAlOaaNeL7q",
+    "mobile": "12345156",
+    "state": "active",
+    "role": {
+      "permissions": {
+        "vehicles": {
+          "view": true,
+          "create": true,
+          "delete": true,
+          "edit": true
+        },
+        "orders": {
+          "view": true,
+          "create": true,
+          "delete": true,
+          "edit": true
+        },
+        "users": {
+          "view": true,
+          "create": true,
+          "delete": true,
+          "edit": true
+        },
+        "customers": {
+          "view": true,
+          "create": true,
+          "delete": true,
+          "edit": true
+        },
+        "roles": {
+          "view": true,
+          "create": true,
+          "delete": true,
+          "edit": true
+        },
+        "dashboard": {
+          "view": true
+        },
+        "reports": {
+          "view": true
+        },
+        "calendar": {
+          "view": true
+        }
+      },
+      "_id": "675b584c127347f4584c3201",
+      "name": "Admin",
+      "__v": 0
+    },
+    "tokenVersion": 0,
+    "__v": 0
+  }
+]

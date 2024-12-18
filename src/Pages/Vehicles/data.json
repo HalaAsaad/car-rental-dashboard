@@ -1,0 +1,434 @@
+[
+  {
+    "_id": "673bc2310f16e58a118f1fb3",
+    "carId": "DCWA-680",
+    "vinNumber": "KMHLN4AJ4MU009226",
+    "brand": "HYUNDAI",
+    "model": "ELENTRA",
+    "color": "BLACK",
+    "mileage": 50000,
+    "year": 2021,
+    "rentalPrice": 50,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/beirut-mart/image/upload/v1731969646/skyline-car-rental-media/ejii4ceaps68t297xq2v.jpg",
+        "public_id": "skyline-car-rental-media/ejii4ceaps68t297xq2v",
+        "resource_type": "image",
+        "_id": "673bc26f0f16e58a118f1feb"
+      }
+    ],
+    "isRented": false,
+    "IsMaintenance": false,
+    "currentCustomer": [],
+    "relevantOrders": []
+  },
+  {
+    "_id": "673bc30c0f16e58a118f1ffd",
+    "carId": "DCWA-763",
+    "vinNumber": "2HGFE1F93NH004085",
+    "brand": "HONDA",
+    "model": "CIVIC TOURING",
+    "color": "GREY",
+    "mileage": 50000,
+    "year": 2022,
+    "rentalPrice": 50,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/beirut-mart/image/upload/v1731969803/skyline-car-rental-media/tzhgwo8zwr0nob8vny9v.jpg",
+        "public_id": "skyline-car-rental-media/tzhgwo8zwr0nob8vny9v",
+        "resource_type": "image",
+        "_id": "673bc30c0f16e58a118f1ffe"
+      }
+    ],
+    "isRented": false,
+    "IsMaintenance": false,
+    "currentCustomer": [],
+    "relevantOrders": []
+  },
+  {
+    "_id": "673bc39c0f16e58a118f2012",
+    "carId": "DCWA-583",
+    "vinNumber": "KMHLM4AG5NU341149",
+    "brand": "HYUNDAI",
+    "model": "ELENTRA",
+    "color": "WHITE",
+    "mileage": 50000,
+    "year": 2022,
+    "rentalPrice": 50,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/beirut-mart/image/upload/v1731969948/skyline-car-rental-media/xckhdtklqcblj15e1skg.jpg",
+        "public_id": "skyline-car-rental-media/xckhdtklqcblj15e1skg",
+        "resource_type": "image",
+        "_id": "673bc39c0f16e58a118f2013"
+      }
+    ],
+    "isRented": false,
+    "IsMaintenance": false,
+    "currentCustomer": [],
+    "relevantOrders": []
+  },
+  {
+    "_id": "673bc42e0f16e58a118f2029",
+    "carId": "DCWA-793",
+    "vinNumber": "3MW5R7J00M8B60147",
+    "brand": "BMW",
+    "model": "SERIES 3",
+    "color": "BLACK",
+    "mileage": 70000,
+    "year": 2021,
+    "rentalPrice": 80,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/beirut-mart/image/upload/v1731970094/skyline-car-rental-media/rxcdx68cm0twvijxjiyf.jpg",
+        "public_id": "skyline-car-rental-media/rxcdx68cm0twvijxjiyf",
+        "resource_type": "image",
+        "_id": "673bc42e0f16e58a118f202a"
+      }
+    ],
+    "isRented": false,
+    "IsMaintenance": false,
+    "currentCustomer": [],
+    "relevantOrders": []
+  },
+  {
+    "_id": "673bc4ce0f16e58a118f2042",
+    "carId": "DCWM-040",
+    "vinNumber": "2HGFE2F20PH110506",
+    "brand": "HONDA",
+    "model": "CIVIC",
+    "color": "BLACK",
+    "mileage": 50000,
+    "year": 2020,
+    "rentalPrice": 50,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/beirut-mart/image/upload/v1731970254/skyline-car-rental-media/l3zroofjilhwruoxzqsp.jpg",
+        "public_id": "skyline-car-rental-media/l3zroofjilhwruoxzqsp",
+        "resource_type": "image",
+        "_id": "673bc4ce0f16e58a118f2043"
+      }
+    ],
+    "isRented": false,
+    "IsMaintenance": false,
+    "currentCustomer": [],
+    "relevantOrders": []
+  },
+  {
+    "_id": "673bc54a0f16e58a118f205d",
+    "carId": "DCWM-011",
+    "vinNumber": "KMHLN4AG7MU064841",
+    "brand": "HYUNDAI",
+    "model": "ELENTRA",
+    "color": "GREY",
+    "mileage": 50000,
+    "year": 2021,
+    "rentalPrice": 50,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/beirut-mart/image/upload/v1731970377/skyline-car-rental-media/ok5ixh5smhz2n3kdzpyg.jpg",
+        "public_id": "skyline-car-rental-media/ok5ixh5smhz2n3kdzpyg",
+        "resource_type": "image",
+        "_id": "673bc54a0f16e58a118f205e"
+      }
+    ],
+    "isRented": false,
+    "IsMaintenance": false,
+    "currentCustomer": [],
+    "relevantOrders": []
+  },
+  {
+    "_id": "673bc60f0f16e58a118f20b3",
+    "carId": "DCWM-009",
+    "vinNumber": "1HGCY2F88PA801229",
+    "brand": "HONDA",
+    "model": "ACCORD",
+    "color": "SKY BLUE",
+    "mileage": 100000,
+    "year": 2023,
+    "rentalPrice": 50,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/beirut-mart/image/upload/v1731970574/skyline-car-rental-media/trmii2wrrusxnlrugtzh.jpg",
+        "public_id": "skyline-car-rental-media/trmii2wrrusxnlrugtzh",
+        "resource_type": "image",
+        "_id": "673bc60f0f16e58a118f20b4"
+      }
+    ],
+    "isRented": false,
+    "IsMaintenance": false,
+    "currentCustomer": [],
+    "relevantOrders": []
+  },
+  {
+    "_id": "673bc6ad0f16e58a118f20d2",
+    "carId": "DCWM-029",
+    "vinNumber": "2T3R1RFV1NC305491",
+    "brand": "TOYOTA",
+    "model": "RAV4",
+    "color": "WHITE",
+    "mileage": 50000,
+    "year": 2022,
+    "rentalPrice": 50,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/beirut-mart/image/upload/v1731970732/skyline-car-rental-media/v6sgvnrf3rkzkbyb9b49.jpg",
+        "public_id": "skyline-car-rental-media/v6sgvnrf3rkzkbyb9b49",
+        "resource_type": "image",
+        "_id": "673bc6ad0f16e58a118f20d3"
+      }
+    ],
+    "isRented": false,
+    "IsMaintenance": false,
+    "currentCustomer": [],
+    "relevantOrders": []
+  },
+  {
+    "_id": "673bc75c0f16e58a118f20f9",
+    "carId": "DCWA-788",
+    "vinNumber": "2HGFC2F59LH015730",
+    "brand": "HONDA",
+    "model": "CIVIC ",
+    "color": "BLACK",
+    "mileage": 50000,
+    "year": 2023,
+    "rentalPrice": 50,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/beirut-mart/image/upload/v1731970907/skyline-car-rental-media/yjfph7b1cwqps0llr5ri.jpg",
+        "public_id": "skyline-car-rental-media/yjfph7b1cwqps0llr5ri",
+        "resource_type": "image",
+        "_id": "673bc75c0f16e58a118f20fa"
+      }
+    ],
+    "isRented": false,
+    "IsMaintenance": false,
+    "currentCustomer": [],
+    "relevantOrders": []
+  },
+  {
+    "_id": "673bc8270f16e58a118f211c",
+    "carId": "DCWM-349",
+    "vinNumber": "1G1ZD5ST4NF111874",
+    "brand": "CHEVROLIT",
+    "model": "MALIBU",
+    "color": "WHITE",
+    "mileage": 50000,
+    "year": 2022,
+    "rentalPrice": 50,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/beirut-mart/image/upload/v1731971111/skyline-car-rental-media/x2xtcytqbakvv4huztnf.jpg",
+        "public_id": "skyline-car-rental-media/x2xtcytqbakvv4huztnf",
+        "resource_type": "image",
+        "_id": "673bc8270f16e58a118f211d"
+      }
+    ],
+    "isRented": false,
+    "IsMaintenance": false,
+    "currentCustomer": [],
+    "relevantOrders": []
+  },
+  {
+    "_id": "673bc9090f16e58a118f2141",
+    "carId": "DCWM-198",
+    "vinNumber": "KMHLM4AG8NU215710",
+    "brand": "HYUNDAI",
+    "model": "ELENTRA",
+    "color": "GREY",
+    "mileage": 50000,
+    "year": 2023,
+    "rentalPrice": 50,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/beirut-mart/image/upload/v1731971337/skyline-car-rental-media/px0jb3oz75jxovncqbat.jpg",
+        "public_id": "skyline-car-rental-media/px0jb3oz75jxovncqbat",
+        "resource_type": "image",
+        "_id": "673bc9090f16e58a118f2142"
+      }
+    ],
+    "isRented": false,
+    "IsMaintenance": false,
+    "currentCustomer": [],
+    "relevantOrders": []
+  },
+  {
+    "_id": "673bca390f16e58a118f2168",
+    "carId": "DCWM-650",
+    "vinNumber": "5NPEG4JAXMH120221",
+    "brand": "HYUNDAI",
+    "model": "SONATA",
+    "color": "WHITE",
+    "mileage": 50000,
+    "year": 2021,
+    "rentalPrice": 50,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/beirut-mart/image/upload/v1731971640/skyline-car-rental-media/lqzp4tefs3rwzo5qy9ry.jpg",
+        "public_id": "skyline-car-rental-media/lqzp4tefs3rwzo5qy9ry",
+        "resource_type": "image",
+        "_id": "673bca390f16e58a118f2169"
+      }
+    ],
+    "isRented": false,
+    "IsMaintenance": false,
+    "currentCustomer": [],
+    "relevantOrders": []
+  },
+  {
+    "_id": "673bcaac0f16e58a118f2191",
+    "carId": "DCWM-574",
+    "vinNumber": "2HGFC2F77LH032219",
+    "brand": "HONDA",
+    "model": "CIVIC",
+    "color": "BLACK",
+    "mileage": 50000,
+    "year": 2020,
+    "rentalPrice": 50,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/beirut-mart/image/upload/v1731971753/skyline-car-rental-media/y18tmkmrpolillenretn.jpg",
+        "public_id": "skyline-car-rental-media/y18tmkmrpolillenretn",
+        "resource_type": "image",
+        "_id": "673bcaac0f16e58a118f2192"
+      }
+    ],
+    "isRented": false,
+    "IsMaintenance": false,
+    "currentCustomer": [],
+    "relevantOrders": []
+  },
+  {
+    "_id": "673bcb5d0f16e58a118f21c0",
+    "carId": "DCWM-454",
+    "vinNumber": "1C4RJHBG9N8602370",
+    "brand": "JEEP",
+    "model": " GRAND CHEROKI",
+    "color": "WHITE",
+    "mileage": 50000,
+    "year": 2022,
+    "rentalPrice": 100,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/beirut-mart/image/upload/v1731971932/skyline-car-rental-media/ekzkghmrusahiizcbmnk.jpg",
+        "public_id": "skyline-car-rental-media/ekzkghmrusahiizcbmnk",
+        "resource_type": "image",
+        "_id": "673bcb5d0f16e58a118f21c1"
+      }
+    ],
+    "isRented": false,
+    "IsMaintenance": false,
+    "currentCustomer": [],
+    "relevantOrders": []
+  },
+  {
+    "_id": "673bcbd20f16e58a118f21ed",
+    "carId": "DCWM-665",
+    "vinNumber": "KMHLN2DG2RU701721",
+    "brand": "HYUNDAI",
+    "model": "ELENTRA",
+    "color": "GREY",
+    "mileage": 50000,
+    "year": 2024,
+    "rentalPrice": 50,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/beirut-mart/image/upload/v1731972050/skyline-car-rental-media/ybneegejo655qatqygni.jpg",
+        "public_id": "skyline-car-rental-media/ybneegejo655qatqygni",
+        "resource_type": "image",
+        "_id": "673bcbd20f16e58a118f21ee"
+      }
+    ],
+    "isRented": false,
+    "IsMaintenance": false,
+    "currentCustomer": [],
+    "relevantOrders": []
+  },
+  {
+    "_id": "673bcc8b0f16e58a118f221c",
+    "carId": "DCWM-668",
+    "vinNumber": "KMHLN4AG9PU408173",
+    "brand": "HYUNDAI",
+    "model": "ELENTRA",
+    "color": "GREY",
+    "mileage": 50000,
+    "year": 2023,
+    "rentalPrice": 50,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/beirut-mart/image/upload/v1731972234/skyline-car-rental-media/ht1go37olv9sd70dcyeg.jpg",
+        "public_id": "skyline-car-rental-media/ht1go37olv9sd70dcyeg",
+        "resource_type": "image",
+        "_id": "673bcc8b0f16e58a118f221d"
+      }
+    ],
+    "isRented": false,
+    "IsMaintenance": false,
+    "currentCustomer": [],
+    "relevantOrders": []
+  },
+  {
+    "_id": "673bcda20f16e58a118f224d",
+    "carId": "DCWM-832",
+    "vinNumber": "5NPEJ4J2XMH073539",
+    "brand": "HYNDAI",
+    "model": "SONATA",
+    "color": "GREY",
+    "mileage": 50000,
+    "year": 2021,
+    "rentalPrice": 50,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/beirut-mart/image/upload/v1731972514/skyline-car-rental-media/yuehgzzxcxhk0cwzcjyq.jpg",
+        "public_id": "skyline-car-rental-media/yuehgzzxcxhk0cwzcjyq",
+        "resource_type": "image",
+        "_id": "673bcda20f16e58a118f224e"
+      }
+    ],
+    "isRented": false,
+    "IsMaintenance": false,
+    "currentCustomer": [],
+    "relevantOrders": []
+  },
+  {
+    "_id": "673bd0e70f16e58a118f2280",
+    "carId": "DCWM-922",
+    "vinNumber": "JTDBBMBE3N3502414",
+    "brand": "TOYOTA",
+    "model": "COROLLA",
+    "color": "BLACK",
+    "mileage": 50000,
+    "year": 2022,
+    "rentalPrice": 50,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/beirut-mart/image/upload/v1731973350/skyline-car-rental-media/orbtgtr7dtgjy61bpwyp.jpg",
+        "public_id": "skyline-car-rental-media/orbtgtr7dtgjy61bpwyp",
+        "resource_type": "image",
+        "_id": "673bd0e70f16e58a118f2281"
+      }
+    ],
+    "isRented": false,
+    "IsMaintenance": false,
+    "currentCustomer": [],
+    "relevantOrders": []
+  }
+]
