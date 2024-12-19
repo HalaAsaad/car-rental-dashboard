@@ -17,12 +17,17 @@ import {
 import { useNavigate } from "react-router-dom";
 import StateBody from "../../Components/Columns/StateBody";
 import RemoveDialog from "../../Components/RemoveDialog";
-import { addCommas } from "../../lib";
+import { addCommas, deleteItemFromArray } from "../../lib";
 
 function Vehicles({ permissions }) {
   const navigate = useNavigate();
-  const { setShowBackButton, setNavigationBackURL } = useContext(AppContext);
-  const [DataTable, setDataTable] = useState([]);
+  const {
+    setShowBackButton,
+    setNavigationBackURL,
+    VehiclesData,
+    setVehiclesData,
+  } = useContext(AppContext);
+  // const [DataTable, setDataTable] = useState([]);
   const [FilterData, setFilterData] = useState({
     Brands: [],
     Models: [],
@@ -56,83 +61,69 @@ function Vehicles({ permissions }) {
       behavior: "smooth",
     });
   }, []);
-  useEffect(() => {
-    setLoading(true);
-    axiosInstance
-      .get(API.vehicles, {
-        params: {
-          search: filterValues?.search,
-          brands: filterValues?.brands?.join(","),
-          models: filterValues?.models?.join(","),
-          // status: filterValues?.status
-          //   ?.filter((val) => val !== "rented" && val !== "in maintenance")
-          //   ?.join(","),
-          status:
-            filterValues?.status !== "rented" &&
-            filterValues?.status !== "in maintenance"
-              ? filterValues?.status
-              : undefined,
-          priceMin: filterValues?.priceMin,
-          priceMax: filterValues?.priceMax,
-          isRented: filterValues?.status?.includes("rented")
-            ? true
-            : filterValues?.status?.includes("available")
-            ? false
-            : undefined,
-          isMaintenance: filterValues?.status?.includes("in maintenance")
-            ? true
-            : filterValues?.status?.includes("available")
-            ? false
-            : undefined,
-          // isRented: filterValues?.status?.includes("rented")
-          //   ? true
-          //   : filterValues?.status?.includes("available") &&
-          //     filterValues?.status?.length === 1
-          //   ? false
-          //   : undefined,
-          // isMaintenance: filterValues?.status?.includes("in maintenance")
-          //   ? true
-          //   : filterValues?.status?.includes("available") &&
-          //     filterValues?.status?.length === 1
-          //   ? false
-          //   : undefined,
-        },
-      })
-      .then((res) => {
-        setTotalRecords(res?.data?.count);
-        let data = res?.data?.data?.map((val) => ({
-          ...val,
-          id: val?._id,
-        }));
-        setPage(0);
-        setDataTable([...data]);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setTotalRecords(0);
-        setDataTable([]);
-        setLoading(false);
-      });
-  }, [filterValues, Refresh]);
-  useEffect(() => {
-    axiosInstance.get(API.vehicles).then((res) => {
-      let data = res?.data?.data?.map((val) => ({
-        ...val,
-        id: val?._id,
-      }));
-      let isRentedExist = data?.find((ele) => ele?.isRented);
-      let isIsMaintenaceExist = data?.find((ele) => ele?.IsMaintenance);
-      setFilterData({
-        Brands: [...new Set(data?.map((ele) => ele?.brand))],
-        Models: [...new Set(data?.map((ele) => ele?.model))],
-        Status: [
-          ...new Set(data?.map((ele) => ele?.state)),
-          isRentedExist ? "rented" : null,
-          isIsMaintenaceExist ? "in maintenance" : null,
-        ],
-      });
-    });
-  }, [Refresh]);
+
+  // useEffect(() => {
+  //   setLoading(true);
+  //   axiosInstance
+  //     .get(API.vehicles, {
+  //       params: {
+  //         search: filterValues?.search,
+  //         brands: filterValues?.brands?.join(","),
+  //         models: filterValues?.models?.join(","),
+  //         status:
+  //           filterValues?.status !== "rented" &&
+  //           filterValues?.status !== "in maintenance"
+  //             ? filterValues?.status
+  //             : undefined,
+  //         priceMin: filterValues?.priceMin,
+  //         priceMax: filterValues?.priceMax,
+  //         isRented: filterValues?.status?.includes("rented")
+  //           ? true
+  //           : filterValues?.status?.includes("available")
+  //           ? false
+  //           : undefined,
+  //         isMaintenance: filterValues?.status?.includes("in maintenance")
+  //           ? true
+  //           : filterValues?.status?.includes("available")
+  //           ? false
+  //           : undefined,
+  //       },
+  //     })
+  //     .then((res) => {
+  //       setTotalRecords(res?.data?.count);
+  //       let data = res?.data?.data?.map((val) => ({
+  //         ...val,
+  //         id: val?._id,
+  //       }));
+  //       setPage(0);
+  //       setDataTable([...data]);
+  //       setLoading(false);
+  //     })
+  //     .catch((err) => {
+  //       setTotalRecords(0);
+  //       setDataTable([]);
+  //       setLoading(false);
+  //     });
+  // }, [filterValues, Refresh]);
+  // useEffect(() => {
+  //   axiosInstance.get(API.vehicles).then((res) => {
+  //     let data = res?.data?.data?.map((val) => ({
+  //       ...val,
+  //       id: val?._id,
+  //     }));
+  //     let isRentedExist = data?.find((ele) => ele?.isRented);
+  //     let isIsMaintenaceExist = data?.find((ele) => ele?.IsMaintenance);
+  //     setFilterData({
+  //       Brands: [...new Set(data?.map((ele) => ele?.brand))],
+  //       Models: [...new Set(data?.map((ele) => ele?.model))],
+  //       Status: [
+  //         ...new Set(data?.map((ele) => ele?.state)),
+  //         isRentedExist ? "rented" : null,
+  //         isIsMaintenaceExist ? "in maintenance" : null,
+  //       ],
+  //     });
+  //   });
+  // }, [Refresh]);
   const colors = {
     available: "#0F930F",
     unavailable: "#EF0A0A",
@@ -312,42 +303,43 @@ function Vehicles({ permissions }) {
       disableColumnMenu: true,
       sortable: true,
       renderCell: (params) => {
-        let state;
-        if (params?.row?.state === "out_of_service") {
-          state = "out_of_service";
-        } else if (
-          !params?.row?.isRented &&
-          !params?.row?.IsMaintenance &&
-          params?.row?.state !== "out_of_service"
-        ) {
-          state = "available";
-        } else if (
-          params?.row?.isRented &&
-          params?.row?.IsMaintenance &&
-          params?.row?.state !== "out_of_service"
-        ) {
-          return (
-            <Stack direction={"column"}>
-              <StateBody color={colors["rented"]} value={"rented"} />
-              <StateBody
-                color={colors["in_maintenance"]}
-                value={"in maintenance"}
-              />
-            </Stack>
-          );
-        } else if (
-          params?.row?.isRented &&
-          !params?.row?.IsMaintenance &&
-          params?.row?.state !== "out_of_service"
-        ) {
-          state = "rented";
-        } else if (
-          !params?.row?.isRented &&
-          params?.row?.IsMaintenance &&
-          params?.row?.state !== "out_of_service"
-        ) {
-          state = "in_maintenance";
-        }
+        let state = params?.row?.state || "available";
+        // let state;
+        // if (params?.row?.state === "out_of_service") {
+        //   state = "out_of_service";
+        // } else if (
+        //   !params?.row?.isRented &&
+        //   !params?.row?.IsMaintenance &&
+        //   params?.row?.state !== "out_of_service"
+        // ) {
+        //   state = "available";
+        // } else if (
+        //   params?.row?.isRented &&
+        //   params?.row?.IsMaintenance &&
+        //   params?.row?.state !== "out_of_service"
+        // ) {
+        //   return (
+        //     <Stack direction={"column"}>
+        //       <StateBody color={colors["rented"]} value={"rented"} />
+        //       <StateBody
+        //         color={colors["in_maintenance"]}
+        //         value={"in maintenance"}
+        //       />
+        //     </Stack>
+        //   );
+        // } else if (
+        //   params?.row?.isRented &&
+        //   !params?.row?.IsMaintenance &&
+        //   params?.row?.state !== "out_of_service"
+        // ) {
+        //   state = "rented";
+        // } else if (
+        //   !params?.row?.isRented &&
+        //   params?.row?.IsMaintenance &&
+        //   params?.row?.state !== "out_of_service"
+        // ) {
+        //   state = "in_maintenance";
+        // }
         return (
           <StateBody color={colors[state]} value={state?.replace("_", " ")} />
         );
@@ -377,7 +369,7 @@ function Vehicles({ permissions }) {
                   label: "View",
                   onClick: () => {
                     setShowBackButton(true);
-                    navigate(`/vehicles/details/${params?.row?._id}`);
+                    navigate(`/vehicles/details/${params?.row?.id}`);
                   },
                   hide: !permissions?.vehicles?.view,
                 },
@@ -386,22 +378,23 @@ function Vehicles({ permissions }) {
                   label: "Maintenance",
                   onClick: () => {
                     setShowBackButton(true);
-                    navigate(`/vehicles/maintenance/${params?.row?._id}`);
+                    navigate(`/vehicles/maintenance/${params?.row?.id}`);
                   },
                 },
                 {
                   icon: <BorderColorOutlinedIcon />,
                   label: "Edit",
                   onClick: () => {
-                    navigate(`/vehicles/edit/${params?.row?._id}`);
+                    navigate(`/vehicles/edit/${params?.row?.id}`);
                   },
                   hide: !permissions?.vehicles?.edit,
                 },
                 {
-                  icon: <DeleteOutlinedIcon color="secondary" />,
+                  icon: <DeleteOutlinedIcon color="error" />,
                   label: "Delete",
-                  color: "secondary",
+                  color: "error",
                   onClick: () => {
+                    console.log("params ", params);
                     setRowData(params?.row);
                     setOpenRemove(true);
                   },
@@ -430,7 +423,8 @@ function Vehicles({ permissions }) {
             <CircularProgress />
           ) : (
             <DataGrid
-              rows={DataTable || []}
+              //rows={DataTable || []}
+              rows={VehiclesData?.map((ele, i) => ({ ...ele, index: i })) || []}
               columns={columns}
               style={{ overflow: "auto" }}
               pagination
@@ -481,10 +475,15 @@ function Vehicles({ permissions }) {
       <RemoveDialog
         open={OpenRemove}
         setOpen={setOpenRemove}
-        endpoint={API.vehicles}
-        itemId={RowData?._id}
-        setRefresh={setRefresh}
-        Refresh={Refresh}
+        handleSave={() => {
+          let newData = deleteItemFromArray(VehiclesData, RowData.index);
+          setVehiclesData(newData);
+          setOpenRemove(false);
+        }}
+        // endpoint={API.vehicles}
+        // itemId={RowData?._id}
+        // setRefresh={setRefresh}
+        // Refresh={Refresh}
       />
     </>
   );

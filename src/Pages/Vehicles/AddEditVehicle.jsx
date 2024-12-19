@@ -24,6 +24,7 @@ import axiosInstance from "../../axiosInstance";
 import API from "../../api";
 import { AppContext } from "../../Context/AppContext";
 import SaveCancelBtns from "../../Components/SaveCancelBtns";
+import { deleteItemFromArray } from "../../lib";
 
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
@@ -42,7 +43,8 @@ function AddEdit() {
   const params = useParams();
   const theme = useTheme();
   // console.log("params ", params.name);
-  const { setShowBackButton } = useContext(AppContext);
+  const { setShowBackButton, VehiclesData, setVehiclesData } =
+    useContext(AppContext);
   let pathName = window.location.pathname;
   const [Info, setInfo] = useState({
     id: undefined,
@@ -60,7 +62,7 @@ function AddEdit() {
     out_of_service: false,
   });
   console.log("info ", Info);
-  const [files, setFiles] = useState([]);
+  // const [files, setFiles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [LoadingInfo, setLoadingInfo] = useState(true);
   const [LoadingDeleteImage, setLoadingDeleteImage] = useState(false);
@@ -82,97 +84,142 @@ function AddEdit() {
   useEffect(() => {
     if (pathName?.includes("edit")) {
       // get car info by name
-      setLoadingInfo(true);
-      axiosInstance
-        .get(API.vehicles + `/${params.name}`)
-        .then((res) => {
-          // console.log(res?.data?.data);
-          if (res?.data?.success) {
-            setInfo({
-              id: res?.data?.data?._id,
-              media: res?.data?.data?.media,
-              carId: res?.data?.data?.carId,
-              vinNumber: res?.data?.data?.vinNumber,
-              brand: res?.data?.data?.brand,
-              model: res?.data?.data?.model,
-              color: res?.data?.data?.color,
-              mileage: res?.data?.data?.mileage,
-              rentalPrice: res?.data?.data?.rentalPrice,
-              state: res?.data?.data?.state,
-              out_of_service:
-                res?.data?.data?.state === "out_of_service" ? true : false,
-              // nextMaintenanceDate: dayjs(res?.data?.data?.nextMaintenanceDate),
-              year: res?.data?.data?.year
-                ? dayjs(new Date().setFullYear(res?.data?.data?.year))
-                : undefined,
-            });
-            setLoadingInfo(false);
-          }
-          setLoadingDeleteImage(false);
-        })
-        .catch((err) => {
-          setLoadingInfo(false);
-          setLoadingDeleteImage(false);
+      setLoading(true);
+      let findCar = VehiclesData?.find((ele) => `${ele?.id}` === params.name);
+      if (findCar) {
+        setInfo({
+          id: findCar?.id,
+          media: findCar?.media,
+          carId: findCar?.carId,
+          vinNumber: findCar?.vinNumber,
+          brand: findCar?.brand,
+          model: findCar?.model,
+          color: findCar?.color,
+          mileage: findCar?.mileage,
+          rentalPrice: findCar?.rentalPrice,
+          state: findCar?.state,
+          nextMaintenanceDate: findCar?.nextMaintenanceDate,
+          out_of_service: findCar?.state === "out_of_service" ? true : false,
+          // nextMaintenanceDate: dayjs(findCar?.nextMaintenanceDate),
+          year: findCar?.year
+            ? dayjs(new Date().setFullYear(findCar?.year))
+            : undefined,
         });
+      }
+      setLoading(false);
+      setLoadingInfo(false);
+      setLoadingDeleteImage(false);
     } else {
+      setLoading(false);
       setLoadingInfo(false);
       setLoadingDeleteImage(false);
     }
-  }, [pathName, params.name, Refresh]);
+  }, [params.name, VehiclesData]);
 
-  function handleResponse(res) {
-    // console.log("res ", res);
-    if (res?.data?.success === true) {
-      setLoading(false);
-      navigate("/vehicles");
-    } else {
-      setLoading(false);
-      setError({
-        isError: true,
-        errorMessage: res?.data?.error || "Some thing went wrong.",
-        errors: res?.data?.errors?.join(", "),
-      });
-    }
-  }
+  // useEffect(() => {
+  //   if (pathName?.includes("edit")) {
+  //     // get car info by name
+  //     setLoadingInfo(true);
+  //     axiosInstance
+  //       .get(API.vehicles + `/${params.name}`)
+  //       .then((res) => {
+  //         // console.log(res?.data?.data);
+  //         if (res?.data?.success) {
+  //           setInfo({
+  //             id: res?.data?.data?._id,
+  //             media: res?.data?.data?.media,
+  //             carId: res?.data?.data?.carId,
+  //             vinNumber: res?.data?.data?.vinNumber,
+  //             brand: res?.data?.data?.brand,
+  //             model: res?.data?.data?.model,
+  //             color: res?.data?.data?.color,
+  //             mileage: res?.data?.data?.mileage,
+  //             rentalPrice: res?.data?.data?.rentalPrice,
+  //             state: res?.data?.data?.state,
+  //             out_of_service:
+  //               res?.data?.data?.state === "out_of_service" ? true : false,
+  //             // nextMaintenanceDate: dayjs(res?.data?.data?.nextMaintenanceDate),
+  //             year: res?.data?.data?.year
+  //               ? dayjs(new Date().setFullYear(res?.data?.data?.year))
+  //               : undefined,
+  //           });
+  //           setLoadingInfo(false);
+  //         }
+  //         setLoadingDeleteImage(false);
+  //       })
+  //       .catch((err) => {
+  //         setLoadingInfo(false);
+  //         setLoadingDeleteImage(false);
+  //       });
+  //   } else {
+  //     setLoadingInfo(false);
+  //     setLoadingDeleteImage(false);
+  //   }
+  // }, [pathName, params.name, Refresh]);
+
+  // function handleResponse(res) {
+  //   // console.log("res ", res);
+  //   if (res?.data?.success === true) {
+  //     setLoading(false);
+  //     navigate("/vehicles");
+  //   } else {
+  //     setLoading(false);
+  //     setError({
+  //       isError: true,
+  //       errorMessage: res?.data?.error || "Some thing went wrong.",
+  //       errors: res?.data?.errors?.join(", "),
+  //     });
+  //   }
+  // }
   const handleSave = () => {
-    let bodyData = new FormData();
-    bodyData.append("carId", Info?.carId);
-    bodyData.append("vinNumber", Info?.vinNumber);
-    bodyData.append("brand", Info?.brand);
-    bodyData.append("model", Info?.model);
-    bodyData.append("color", Info?.color);
-    bodyData.append("mileage", Info?.mileage);
-    bodyData.append("rentalPrice", Info?.rentalPrice);
-    if (Info?.out_of_service) {
-      bodyData.append("state", "out_of_service");
-    } else {
-      bodyData.append("state", "available");
-    }
-    //bodyData.append("nextMaintenanceDate", Info?.nextMaintenanceDate);
-    bodyData.append(
-      "year",
-      Info?.year ? new Date(Info?.year).getFullYear() : undefined
-    );
-    files?.forEach((f) => {
-      bodyData.append("media", f);
-    });
-    setLoading(true);
-    setError({
-      isError: false,
-      errorMessage: "",
-      errors: "",
-    });
-
     if (pathName?.includes("edit")) {
-      axiosInstance.put(API.vehicles + `/${Info.id}`, bodyData).then((res) => {
-        handleResponse(res);
-      });
     } else {
-      axiosInstance.post(API.vehicles, bodyData).then((res) => {
-        handleResponse(res);
-      });
+      setVehiclesData((prev) => [
+        { ...Info, id: Math.random() },
+        ...(prev || []),
+      ]);
+      navigate("/vehicles");
     }
   };
+  // const handleSave = () => {
+  //   let bodyData = new FormData();
+  //   bodyData.append("carId", Info?.carId);
+  //   bodyData.append("vinNumber", Info?.vinNumber);
+  //   bodyData.append("brand", Info?.brand);
+  //   bodyData.append("model", Info?.model);
+  //   bodyData.append("color", Info?.color);
+  //   bodyData.append("mileage", Info?.mileage);
+  //   bodyData.append("rentalPrice", Info?.rentalPrice);
+  //   if (Info?.out_of_service) {
+  //     bodyData.append("state", "out_of_service");
+  //   } else {
+  //     bodyData.append("state", "available");
+  //   }
+  //   //bodyData.append("nextMaintenanceDate", Info?.nextMaintenanceDate);
+  //   bodyData.append(
+  //     "year",
+  //     Info?.year ? new Date(Info?.year).getFullYear() : undefined
+  //   );
+  //   files?.forEach((f) => {
+  //     bodyData.append("media", f);
+  //   });
+  //   setLoading(true);
+  //   setError({
+  //     isError: false,
+  //     errorMessage: "",
+  //     errors: "",
+  //   });
+
+  //   if (pathName?.includes("edit")) {
+  //     axiosInstance.put(API.vehicles + `/${Info.id}`, bodyData).then((res) => {
+  //       handleResponse(res);
+  //     });
+  //   } else {
+  //     axiosInstance.post(API.vehicles, bodyData).then((res) => {
+  //       handleResponse(res);
+  //     });
+  //   }
+  // };
   const renderImage = (url, onClick) => {
     return (
       <div
@@ -186,10 +233,6 @@ function AddEdit() {
           backgroundImage: `url('${url}')`,
           position: "relative",
         }}
-        // onClick={() => {
-        //   setSelectedImage(img);
-        //   setSelectVideo("");
-        // }}
       >
         <Box
           sx={{
@@ -506,6 +549,18 @@ function AddEdit() {
                     <Grid key={i} size={{ xs: 12, sm: 12, md: 4 }}>
                       {renderImage(ele?.url, () => {
                         // delete image by url
+                        let _newMedia = deleteItemFromArray(Info?.media, i);
+                        setInfo((prev) => ({
+                          ...prev,
+                          media: _newMedia,
+                        }));
+                      })}
+                    </Grid>
+                  ))}
+                  {/* {Info?.media?.map((ele, i) => (
+                    <Grid key={i} size={{ xs: 12, sm: 12, md: 4 }}>
+                      {renderImage(ele?.url, () => {
+                        // delete image by url
                         setLoadingDeleteImage(true);
                         axiosInstance
                           .delete(`/vehicles/${Info?.id}/media/${ele?._id}`)
@@ -526,7 +581,7 @@ function AddEdit() {
                         setFiles(_files);
                       })}
                     </Grid>
-                  ))}
+                  ))} */}
                   <Grid size="grow">
                     <Box
                       sx={{
@@ -565,12 +620,40 @@ function AddEdit() {
                           type="file"
                           onChange={(event) => {
                             // console.log(event.target.files);
-                            setFiles((prev) => [
+                            const reader = new FileReader();
+                            const file = event.target.files[0];
+                            reader.addEventListener(
+                              "load",
+                              function (e) {
+                                //console.log(e.currentTarget.result);
+                                setInfo((prev) => ({
+                                  ...prev,
+                                  media: [
+                                    ...(prev.media || [])?.filter(
+                                      (ele) => ele.url !== undefined
+                                    ),
+                                    {
+                                      url: e.currentTarget.result,
+                                    },
+                                  ],
+                                }));
+                              },
+                              false
+                            );
+                            const data = reader.readAsDataURL(file);
+                            setInfo((prev) => ({
                               ...prev,
-                              ...Object.values(event.target.files),
-                            ]);
+                              media: [
+                                ...(prev.media || [])?.filter(
+                                  (ele) => ele.url !== undefined
+                                ),
+                                {
+                                  url: data,
+                                },
+                              ],
+                            }));
                           }}
-                          multiple
+                          //multiple
                           // size={}
                         />
                       </Stack>
@@ -583,7 +666,11 @@ function AddEdit() {
         </Card>
       )}
       {!LoadingInfo && (
-        <SaveCancelBtns handleSave={handleSave} loading={loading} />
+        <SaveCancelBtns
+          handleSave={handleSave}
+          loading={loading}
+          disabledSave={!Info?.media?.length}
+        />
       )}
 
       <Snackbar

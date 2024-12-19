@@ -103,11 +103,13 @@ function Details() {
   const navigate = useNavigate();
   const params = useParams();
   //console.log("params ", params.name);
-  const { setShowBackButton } = useContext(AppContext);
-  const [values, setValues] = useState([[new Date(), new Date()]]); // Multiple Range Picker
+  const { setShowBackButton, VehiclesData } = useContext(AppContext);
+  const [values, setValues] = useState([
+    [new Date(dayjs().startOf("week")), new Date(dayjs().endOf("week"))],
+  ]); // Multiple Range Picker
   const [startDateInDetails, setStartDateInDetails] = useState([]);
   const [endDateInDetails, setEndDateInDetails] = useState([]);
-  console.log(values);
+  // console.log(values);
   const [pageSize, setPageSize] = useState(10);
   const [page, setPage] = useState(0);
   const [totalRecords, setTotalRecords] = useState(0);
@@ -128,87 +130,7 @@ function Details() {
   const [SelectedImageIndex, setSelectedImageIndex] = useState(0);
   const [OpenRemove, setOpenRemove] = useState(false);
   const [Loading, setLoading] = useState(false);
-  const data = {
-    success: true,
-    data: {
-      _id: "673662285736867bfa361690",
-      carId: "125 lwv",
-      vinNumber: "vin20",
-      brand: "BMW",
-      model: "2024",
-      color: "Dark blue ",
-      mileage: 1020,
-      nextMaintenanceDate: "2024-11-20T22:00:00.000Z",
-      rentalPrice: 150,
-      state: "rented",
-      media: [
-        {
-          url: "https://res.cloudinary.com/beirut-mart/image/upload/v1731617487/skyline-car-rental-media/lnf05yhbvgrrgcqga1ks.jpg",
-          public_id: "skyline-car-rental-media/lnf05yhbvgrrgcqga1ks",
-          resource_type: "image",
-          _id: "673662dd5736867bfa3616de",
-        },
-        {
-          url: "https://res.cloudinary.com/beirut-mart/image/upload/v1731617493/skyline-car-rental-media/ty7z5tufpnuam3qldtdq.jpg",
-          public_id: "skyline-car-rental-media/ty7z5tufpnuam3qldtdq",
-          resource_type: "image",
-          _id: "673662dd5736867bfa3616df",
-        },
-        {
-          url: "https://res.cloudinary.com/beirut-mart/image/upload/v1731617499/skyline-car-rental-media/pgl3szwbggeqqicmarcp.jpg",
-          public_id: "skyline-car-rental-media/pgl3szwbggeqqicmarcp",
-          resource_type: "image",
-          _id: "673662dd5736867bfa3616e1",
-        },
-      ],
-      maintenanceTasks: [],
-      rentalHistory: [
-        {
-          orderId: {
-            _id: "67366a405736867bfa361864",
-            customer: {
-              _id: "673665275736867bfa361765",
-              name: "John Doe2",
-            },
-            state: "pending",
-            cars: [
-              {
-                pickupDateTime: "2024-11-15T09:10:43.299Z",
-                returnDateTime: "2024-11-21T21:08:43.299Z",
-                totalPrice: 900,
-                _id: "67373f3922c42d696be20448",
-              },
-            ],
-          },
-          orderDate: "2024-11-14T21:23:13.097Z",
-          _id: "67366a415736867bfa36186a",
-        },
-        {
-          orderId: {
-            _id: "67368e6b22c42d696be1fc64",
-            customer: {
-              _id: "673665275736867bfa361765",
-              name: "John Doe2",
-            },
-            state: "pending",
-            cars: [
-              {
-                pickupDateTime: "2024-11-18T23:55:48.696Z",
-                returnDateTime: "2024-11-22T23:55:48.696Z",
-                totalPrice: 600,
-                _id: "67373f3922c42d696be20449",
-              },
-            ],
-          },
-          orderDate: "2024-11-14T23:57:31.644Z",
-          _id: "67368e6b22c42d696be1fc6c",
-        },
-      ],
-      createdAt: "2024-11-14T20:48:40.844Z",
-      updatedAt: "2024-11-15T07:20:09.889Z",
-      __v: 4,
-    },
-  };
+
   useEffect(() => {
     setShowBackButton(true);
   }, []);
@@ -216,40 +138,66 @@ function Details() {
     if (params.name) {
       // get car info by name
       setLoading(true);
-      axiosInstance.get(API.vehicles + `/${params.name}`).then((res) => {
-        // console.log(res?.data?.data);
-        setValues([]);
-        if (res?.data?.success) {
-          setInfo({
-            id: res?.data?.data?._id,
-            media: res?.data?.data?.media,
-            carId: res?.data?.data?.carId,
-            vinNumber: res?.data?.data?.vinNumber,
-            brand: res?.data?.data?.brand,
-            model: res?.data?.data?.model,
-            color: res?.data?.data?.color,
-            mileage: res?.data?.data?.mileage,
-            rentalPrice: res?.data?.data?.rentalPrice,
-            state: res?.data?.data?.state,
-            nextMaintenanceDate: res?.data?.data?.nextMaintenanceDate,
-            rentalHistory: res?.data?.data?.rentalHistory,
-            maintenanceTasks: res?.data?.data?.maintenanceTasks,
-            currentCustomer: res?.data?.data?.currentCustomer,
-          });
-          res?.data?.data?.rentalHistory?.forEach((element) => {
-            setValues((prev) => [
-              ...prev,
-              [
-                new Date(element?.orderId?.cars[0]?.pickupDateTime),
-                new Date(element?.orderId?.cars[0]?.returnDateTime),
-              ],
-            ]);
-          });
-        }
-        setLoading(false);
-      });
+      let findCar = VehiclesData?.find((ele) => `${ele?.id}` === params.name);
+      if (findCar) {
+        setInfo({
+          id: findCar?.id,
+          media: findCar?.media,
+          carId: findCar?.carId,
+          vinNumber: findCar?.vinNumber,
+          brand: findCar?.brand,
+          model: findCar?.model,
+          color: findCar?.color,
+          mileage: findCar?.mileage,
+          rentalPrice: findCar?.rentalPrice,
+          state: findCar?.state,
+          nextMaintenanceDate: findCar?.nextMaintenanceDate,
+          rentalHistory: findCar?.rentalHistory,
+          maintenanceTasks: findCar?.maintenanceTasks,
+          currentCustomer: findCar?.currentCustomer,
+        });
+      }
+      setLoading(false);
     }
-  }, [params.name]);
+  }, [params.name, VehiclesData]);
+  // useEffect(() => {
+  //   if (params.name) {
+  //     // get car info by name
+  //     setLoading(true);
+  //     axiosInstance.get(API.vehicles + `/${params.name}`).then((res) => {
+  //       // console.log(res?.data?.data);
+  //       setValues([]);
+  //       if (res?.data?.success) {
+  //         setInfo({
+  //           id: res?.data?.data?._id,
+  //           media: res?.data?.data?.media,
+  //           carId: res?.data?.data?.carId,
+  //           vinNumber: res?.data?.data?.vinNumber,
+  //           brand: res?.data?.data?.brand,
+  //           model: res?.data?.data?.model,
+  //           color: res?.data?.data?.color,
+  //           mileage: res?.data?.data?.mileage,
+  //           rentalPrice: res?.data?.data?.rentalPrice,
+  //           state: res?.data?.data?.state,
+  //           nextMaintenanceDate: res?.data?.data?.nextMaintenanceDate,
+  //           rentalHistory: res?.data?.data?.rentalHistory,
+  //           maintenanceTasks: res?.data?.data?.maintenanceTasks,
+  //           currentCustomer: res?.data?.data?.currentCustomer,
+  //         });
+  //         res?.data?.data?.rentalHistory?.forEach((element) => {
+  //           setValues((prev) => [
+  //             ...prev,
+  //             [
+  //               new Date(element?.orderId?.cars[0]?.pickupDateTime),
+  //               new Date(element?.orderId?.cars[0]?.returnDateTime),
+  //             ],
+  //           ]);
+  //         });
+  //       }
+  //       setLoading(false);
+  //     });
+  //   }
+  // }, [params.name]);
   useEffect(() => {
     if (values?.length > 0) {
       // let start = dayjs(values[0][0]).format("YYYY-MM-DD");
@@ -266,9 +214,13 @@ function Details() {
     <Grid container spacing={2}>
       <Grid size={{ xs: Info?.media?.length > 1 ? 9 : 12 }}>
         <div
-          className="oneImage"
+          // className="oneImage"
           style={{
             height: "300px",
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat",
+            backgroundPositionX: "center",
+            backgroundPositionY: "center",
             // backgroundImage: `url(${getImgVidUrl(img)})`,
             backgroundImage: `url('${
               Info?.media?.length > 0
