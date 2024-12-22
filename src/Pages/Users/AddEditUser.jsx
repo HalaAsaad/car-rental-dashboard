@@ -22,13 +22,14 @@ function AddEdit() {
   const params = useParams();
   const theme = useTheme();
   // console.log("params ", params.name);
-  const { setShowBackButton } = useContext(AppContext);
+  const { setShowBackButton, UsersData, setUsersData, RolesData } =
+    useContext(AppContext);
   let pathName = window.location.pathname;
   const [Info, setInfo] = useState({
     id: undefined,
     name: undefined,
     email: undefined,
-    phone: undefined,
+    mobile: undefined,
     role: undefined,
     state: undefined,
     password: undefined,
@@ -45,80 +46,128 @@ function AddEdit() {
   useEffect(() => {
     setShowBackButton(false);
   }, []);
+
   useEffect(() => {
     if (pathName?.includes("edit")) {
       // get car info by name
-      setLoadingInfo(true);
-      axiosInstance.get(API.users + `/${params.name}`).then((res) => {
-        // console.log(res?.data?.data);
-        if (res?.data?.success) {
-          setInfo({
-            id: res?.data?.data?._id,
-            name: res?.data?.data?.name,
-            email: res?.data?.data?.email,
-            phone: res?.data?.data?.mobile,
-            role: res?.data?.data?.role?._id,
-            state: res?.data?.data?.state,
-            password: undefined, //res?.data?.data?.password,
-          });
-        }
-        setLoadingInfo(false);
-      });
-    }
-  }, [pathName, params.name]);
-  useEffect(() => {
-    axiosInstance
-      .get(API.roles_getall)
-      .then((res) => {
-        let data = res?.data?.data;
-        setRoles([...data]);
-      })
-      .catch((err) => {
-        setRoles([]);
-      });
-  }, []);
-
-  function handleResponse(res) {
-    // console.log("res ", res);
-    if (res?.data?.success === true) {
+      setLoading(true);
+      let findItem = UsersData?.find((ele) => `${ele?.id}` === params.name);
+      if (findItem) {
+        setInfo({
+          id: findItem?.id,
+          name: findItem?.name,
+          email: findItem?.email,
+          mobile: findItem?.mobile,
+          role: findItem?.role?.id,
+          state: findItem?.state,
+          password: undefined,
+        });
+      }
+      setLoadingInfo(false);
       setLoading(false);
+    } else {
+      setLoadingInfo(false);
+      setLoading(false);
+    }
+  }, [params.name, UsersData]);
+  // useEffect(() => {
+  //   if (pathName?.includes("edit")) {
+  //     // get car info by name
+  //     setLoadingInfo(true);
+  //     axiosInstance.get(API.users + `/${params.name}`).then((res) => {
+  //       // console.log(res?.data?.data);
+  //       if (res?.data?.success) {
+  //         setInfo({
+  //           id: res?.data?.data?._id,
+  //           name: res?.data?.data?.name,
+  //           email: res?.data?.data?.email,
+  //           phone: res?.data?.data?.mobile,
+  //           role: res?.data?.data?.role?._id,
+  //           state: res?.data?.data?.state,
+  //           password: undefined, //res?.data?.data?.password,
+  //         });
+  //       }
+  //       setLoadingInfo(false);
+  //     });
+  //   }
+  // }, [pathName, params.name]);
+  // useEffect(() => {
+  //   axiosInstance
+  //     .get(API.roles_getall)
+  //     .then((res) => {
+  //       let data = res?.data?.data;
+  //       setRoles([...data]);
+  //     })
+  //     .catch((err) => {
+  //       setRoles([]);
+  //     });
+  // }, []);
+  const handleSave = () => {
+    let findRole = RolesData?.find((ele) => ele.id === Info?.role);
+    if (pathName?.includes("edit")) {
+      let index = UsersData?.findIndex((ele) => ele?.id === Info?.id);
+      let data = UsersData.slice();
+      data[index] = {
+        ...Info,
+        role_name: findRole?.name || "",
+        role: findRole,
+      };
+      setUsersData(data);
       navigate("/management/users");
     } else {
-      setLoading(false);
-      setError({
-        isError: true,
-        errorMessage: res?.data?.error || "Some thing went wrong.",
-        errors: res?.data?.errors?.join(", "),
-      });
-    }
-  }
-
-  const handleSave = () => {
-    const requestBody = {
-      name: Info.name,
-      email: Info.email,
-      password: Info.password,
-      mobile: Info.phone,
-      state: Info.state,
-      role: Info.role,
-    };
-    setLoading(true);
-    setError({
-      isError: false,
-      errorMessage: "",
-      errors: "",
-    });
-
-    if (pathName?.includes("edit")) {
-      axiosInstance.put(API.users + `/${Info.id}`, requestBody).then((res) => {
-        handleResponse(res);
-      });
-    } else {
-      axiosInstance.post(API.create_user, requestBody).then((res) => {
-        handleResponse(res);
-      });
+      setUsersData((prev) => [
+        {
+          ...Info,
+          role_name: findRole?.name || "",
+          role: findRole,
+          id: Math.random(),
+        },
+        ...(prev || []),
+      ]);
+      navigate("/management/users");
     }
   };
+  // function handleResponse(res) {
+  //   // console.log("res ", res);
+  //   if (res?.data?.success === true) {
+  //     setLoading(false);
+  //     navigate("/management/users");
+  //   } else {
+  //     setLoading(false);
+  //     setError({
+  //       isError: true,
+  //       errorMessage: res?.data?.error || "Some thing went wrong.",
+  //       errors: res?.data?.errors?.join(", "),
+  //     });
+  //   }
+  // }
+
+  // const handleSave = () => {
+  //   const requestBody = {
+  //     name: Info.name,
+  //     email: Info.email,
+  //     password: Info.password,
+  //     mobile: Info.phone,
+  //     state: Info.state,
+  //     role: Info.role,
+  //   };
+  //   setLoading(true);
+  //   setError({
+  //     isError: false,
+  //     errorMessage: "",
+  //     errors: "",
+  //   });
+
+  //   if (pathName?.includes("edit")) {
+  //     axiosInstance.put(API.users + `/${Info.id}`, requestBody).then((res) => {
+  //       handleResponse(res);
+  //     });
+  //   } else {
+  //     axiosInstance.post(API.create_user, requestBody).then((res) => {
+  //       handleResponse(res);
+  //     });
+  //   }
+  // };
   return (
     <>
       {LoadingInfo && <CircularProgress />}
@@ -196,11 +245,11 @@ function AddEdit() {
                 placeholder="Enter user phone number"
                 // size="small"
                 fullWidth
-                value={Info?.phone || ""}
+                value={Info?.mobile || ""}
                 onChange={(event) => {
                   setInfo((prev) => ({
                     ...prev,
-                    phone: event.target.value,
+                    mobile: event.target.value,
                   }));
                 }}
               />
@@ -216,7 +265,6 @@ function AddEdit() {
               <Select
                 value={Info?.role || ""}
                 onChange={(event) => {
-                  console.log("event.target.value ", event.target.value);
                   setInfo((prev) => ({
                     ...prev,
                     role: event.target.value,
@@ -227,8 +275,8 @@ function AddEdit() {
                 // size="small"
                 placeholder="Select user role"
               >
-                {Roles?.map((ele, i) => (
-                  <MenuItem key={i} value={ele?._id}>
+                {RolesData?.map((ele, i) => (
+                  <MenuItem key={i} value={ele?.id}>
                     {ele?.name}
                   </MenuItem>
                 ))}

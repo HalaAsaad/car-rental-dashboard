@@ -16,11 +16,12 @@ import {
 import { useNavigate } from "react-router-dom";
 import StateBody from "../../Components/Columns/StateBody";
 import RemoveDialog from "../../Components/RemoveDialog";
+import { deleteItemFromArray } from "../../lib";
 
 function Users({ permissions }) {
   const navigate = useNavigate();
-  const { setShowBackButton } = useContext(AppContext);
-  const [DataTable, setDataTable] = useState([]);
+  const { setShowBackButton, UsersData, setUsersData } = useContext(AppContext);
+  // const [DataTable, setDataTable] = useState([]);
   const [filterValues, setFilterValues] = useState({
     name: undefined,
     status: [],
@@ -40,44 +41,44 @@ function Users({ permissions }) {
   useEffect(() => {
     setShowBackButton(false);
   }, []);
-  useEffect(() => {
-    setLoading(true);
-    axiosInstance
-      .get(API.users_getall, {
-        params: {
-          name: filterValues?.name,
-          state: filterValues?.status, //filterValues?.status?.join(","),
-        },
-      })
-      .then((res) => {
-        setTotalRecords(res?.data?.count);
-        let data = res?.data?.data?.map((val) => ({
-          ...val,
-          id: val?._id,
-          role_name: val?.role?.name || "",
-        }));
-        setPage(0);
-        setDataTable([...data]);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setTotalRecords(0);
-        setDataTable([]);
-        setLoading(false);
-      });
-  }, [filterValues, Refresh]);
-  useEffect(() => {
-    axiosInstance.get(API.users_getall).then((res) => {
-      let data = res?.data?.data?.map((val) => ({
-        ...val,
-        id: val?._id,
-        role_name: val?.role?.name || "",
-      }));
-      setFilterData({
-        status: [...new Set(data?.map((ele) => ele?.state))],
-      });
-    });
-  }, [Refresh]);
+  // useEffect(() => {
+  //   setLoading(true);
+  //   axiosInstance
+  //     .get(API.users_getall, {
+  //       params: {
+  //         name: filterValues?.name,
+  //         state: filterValues?.status, //filterValues?.status?.join(","),
+  //       },
+  //     })
+  //     .then((res) => {
+  //       setTotalRecords(res?.data?.count);
+  //       let data = res?.data?.data?.map((val) => ({
+  //         ...val,
+  //         id: val?._id,
+  //         role_name: val?.role?.name || "",
+  //       }));
+  //       setPage(0);
+  //       setDataTable([...data]);
+  //       setLoading(false);
+  //     })
+  //     .catch((err) => {
+  //       setTotalRecords(0);
+  //       setDataTable([]);
+  //       setLoading(false);
+  //     });
+  // }, [filterValues, Refresh]);
+  // useEffect(() => {
+  //   axiosInstance.get(API.users_getall).then((res) => {
+  //     let data = res?.data?.data?.map((val) => ({
+  //       ...val,
+  //       id: val?._id,
+  //       role_name: val?.role?.name || "",
+  //     }));
+  //     setFilterData({
+  //       status: [...new Set(data?.map((ele) => ele?.state))],
+  //     });
+  //   });
+  // }, [Refresh]);
   const colors = {
     active: "#0F930F",
     inactive: "#EF0A0A",
@@ -169,33 +170,33 @@ function Users({ permissions }) {
                   icon: <BorderColorOutlinedIcon />,
                   label: "Edit",
                   onClick: () => {
-                    navigate(`/management/users/edit/${params?.row?._id}`);
+                    navigate(`/management/users/edit/${params?.row?.id}`);
                   },
                   hide: !permissions?.users?.edit,
                 },
+                // {
+                //   icon: (
+                //     <ConnectedTvIcon
+                //       sx={{
+                //         color:
+                //           params?.row?.state === "active"
+                //             ? colors["inactive"]
+                //             : colors["active"],
+                //       }}
+                //     />
+                //   ),
+                //   label:
+                //     params?.row?.state === "active" ? "Inactive" : "Active",
+                //   onClick: () => {
+                //     setRowData(params?.row);
+                //     setOpenActivate(true);
+                //   },
+                //   hide: !permissions?.users?.edit,
+                // },
                 {
-                  icon: (
-                    <ConnectedTvIcon
-                      sx={{
-                        color:
-                          params?.row?.state === "active"
-                            ? colors["inactive"]
-                            : colors["active"],
-                      }}
-                    />
-                  ),
-                  label:
-                    params?.row?.state === "active" ? "Inactive" : "Active",
-                  onClick: () => {
-                    setRowData(params?.row);
-                    setOpenActivate(true);
-                  },
-                  hide: !permissions?.users?.edit,
-                },
-                {
-                  icon: <DeleteOutlinedIcon color="secondary" />,
+                  icon: <DeleteOutlinedIcon color="error" />,
                   label: "Delete",
-                  color: "secondary",
+                  color: "error",
                   onClick: () => {
                     setRowData(params?.row);
                     setOpenRemove(true);
@@ -225,7 +226,8 @@ function Users({ permissions }) {
             <CircularProgress />
           ) : (
             <DataGrid
-              rows={DataTable || []}
+              //rows={DataTable || []}
+              rows={UsersData?.map((ele, i) => ({ ...ele, index: i })) || []}
               columns={columns}
               style={{ overflow: "auto" }}
               pagination
@@ -276,10 +278,15 @@ function Users({ permissions }) {
       <RemoveDialog
         open={OpenRemove}
         setOpen={setOpenRemove}
-        endpoint={API.users}
-        itemId={RowData?._id}
-        setRefresh={setRefresh}
-        Refresh={Refresh}
+        handleSave={() => {
+          let newData = deleteItemFromArray(UsersData, RowData.index);
+          setUsersData(newData);
+          setOpenRemove(false);
+        }}
+        // endpoint={API.users}
+        // itemId={RowData?._id}
+        // setRefresh={setRefresh}
+        // Refresh={Refresh}
       />
 
       <RemoveDialog

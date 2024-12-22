@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import axiosInstance from "../../axiosInstance";
-import API from "../../api";
+// import axiosInstance from "../../axiosInstance";
+// import API from "../../api";
 import Filter from "./Filter";
 import ActionCellMenu from "../../Components/ActionCellMenu";
 import { AppContext } from "../../Context/AppContext";
@@ -14,19 +14,20 @@ import {
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import RemoveDialog from "../../Components/RemoveDialog";
+import { deleteItemFromArray } from "../../lib";
 
 function Roles({ permissions }) {
   const navigate = useNavigate();
-  const { setShowBackButton } = useContext(AppContext);
-  const [DataTable, setDataTable] = useState([]);
-  const [AllDataTable, setAllDataTable] = useState([]);
+  const { setShowBackButton, RolesData, setRolesData } = useContext(AppContext);
+  // const [DataTable, setDataTable] = useState([]);
+  // const [AllDataTable, setAllDataTable] = useState([]);
 
   const [filterValues, setFilterValues] = useState({
     name: undefined,
   });
   const [OpenRemove, setOpenRemove] = useState(false);
   const [RowData, setRowData] = useState({});
-  const [Refresh, setRefresh] = useState(false);
+  // const [Refresh, setRefresh] = useState(false);
   const [pageSize, setPageSize] = useState(10);
   const [page, setPage] = useState(0);
   const [totalRecords, setTotalRecords] = useState(0);
@@ -35,38 +36,38 @@ function Roles({ permissions }) {
   useEffect(() => {
     setShowBackButton(false);
   }, []);
-  useEffect(() => {
-    setLoading(true);
-    axiosInstance
-      .get(API.roles_getall)
-      .then((res) => {
-        setTotalRecords(res?.data?.count);
-        let data = res?.data?.data?.map((val) => ({
-          ...val,
-          id: val?._id,
-        }));
-        setPage(0);
-        setDataTable([...data]);
-        setAllDataTable([...data]);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setTotalRecords(0);
-        setDataTable([]);
-        setAllDataTable([]);
-        setLoading(false);
-      });
-  }, [Refresh]);
-  useEffect(() => {
-    if (filterValues.name) {
-      let data = AllDataTable?.filter((ele) =>
-        ele?.name?.toLowerCase().includes(filterValues.name)
-      );
-      setDataTable(data);
-    } else {
-      setDataTable(AllDataTable);
-    }
-  }, [filterValues.name, AllDataTable]);
+  // useEffect(() => {
+  //   setLoading(true);
+  //   axiosInstance
+  //     .get(API.roles_getall)
+  //     .then((res) => {
+  //       setTotalRecords(res?.data?.count);
+  //       let data = res?.data?.data?.map((val) => ({
+  //         ...val,
+  //         id: val?._id,
+  //       }));
+  //       setPage(0);
+  //       setDataTable([...data]);
+  //       setAllDataTable([...data]);
+  //       setLoading(false);
+  //     })
+  //     .catch((err) => {
+  //       setTotalRecords(0);
+  //       setDataTable([]);
+  //       setAllDataTable([]);
+  //       setLoading(false);
+  //     });
+  // }, [Refresh]);
+  // useEffect(() => {
+  //   if (filterValues.name) {
+  //     let data = AllDataTable?.filter((ele) =>
+  //       ele?.name?.toLowerCase().includes(filterValues.name)
+  //     );
+  //     setDataTable(data);
+  //   } else {
+  //     setDataTable(AllDataTable);
+  //   }
+  // }, [filterValues.name, AllDataTable]);
 
   const columns = [
     {
@@ -102,14 +103,14 @@ function Roles({ permissions }) {
                   icon: <BorderColorOutlinedIcon />,
                   label: "Edit",
                   onClick: () => {
-                    navigate(`/management/roles/edit/${params?.row?._id}`);
+                    navigate(`/management/roles/edit/${params?.row?.id}`);
                   },
                   hide: !permissions?.roles?.edit,
                 },
                 {
-                  icon: <DeleteOutlinedIcon color="secondary" />,
+                  icon: <DeleteOutlinedIcon color="error" />,
                   label: "Delete",
-                  color: "secondary",
+                  color: "error",
                   onClick: () => {
                     setRowData(params?.row);
                     setOpenRemove(true);
@@ -138,7 +139,8 @@ function Roles({ permissions }) {
             <CircularProgress />
           ) : (
             <DataGrid
-              rows={DataTable || []}
+              //rows={DataTable || []}
+              rows={RolesData?.map((ele, i) => ({ ...ele, index: i })) || []}
               columns={columns}
               style={{ overflow: "auto" }}
               pagination
@@ -189,10 +191,15 @@ function Roles({ permissions }) {
       <RemoveDialog
         open={OpenRemove}
         setOpen={setOpenRemove}
-        endpoint={API.roles}
-        itemId={RowData?._id}
-        setRefresh={setRefresh}
-        Refresh={Refresh}
+        handleSave={() => {
+          let newData = deleteItemFromArray(RolesData, RowData.index);
+          setRolesData(newData);
+          setOpenRemove(false);
+        }}
+        // endpoint={API.roles}
+        // itemId={RowData?._id}
+        // setRefresh={setRefresh}
+        // Refresh={Refresh}
       />
     </>
   );

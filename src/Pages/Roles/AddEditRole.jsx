@@ -21,7 +21,7 @@ function AddEdit() {
   const params = useParams();
   const theme = useTheme();
   // console.log("params ", params.name);
-  const { setShowBackButton } = useContext(AppContext);
+  const { setShowBackButton, RolesData, setRolesData } = useContext(AppContext);
   let pathName = window.location.pathname;
   const [Info, setInfo] = useState({
     id: undefined,
@@ -82,37 +82,56 @@ function AddEdit() {
   useEffect(() => {
     if (pathName?.includes("edit")) {
       // get car info by name
-      setLoadingInfo(true);
-      axiosInstance.get(API.roles + `/${params.name}`).then((res) => {
-        // console.log(res?.data?.data);
-        if (res?.data?.success) {
-          setInfo({
-            id: res?.data?.data?._id,
-            name: res?.data?.data?.name,
-            permissions: res?.data?.data?.permissions,
-          });
-        }
-        setLoadingInfo(false);
-      });
+      setLoading(true);
+      let findItem = RolesData?.find((ele) => `${ele?.id}` === params.name);
+      if (findItem) {
+        setInfo({
+          id: findItem?.id,
+          name: findItem?.name,
+          permissions: findItem?.permissions,
+        });
+      }
+      setLoadingInfo(false);
+      setLoading(false);
     } else {
       setLoadingInfo(false);
+      setLoading(false);
     }
-  }, [pathName, params.name]);
+  }, [params.name, RolesData]);
+  // useEffect(() => {
+  //   if (pathName?.includes("edit")) {
+  //     // get car info by name
+  //     setLoadingInfo(true);
+  //     axiosInstance.get(API.roles + `/${params.name}`).then((res) => {
+  //       // console.log(res?.data?.data);
+  //       if (res?.data?.success) {
+  //         setInfo({
+  //           id: res?.data?.data?._id,
+  //           name: res?.data?.data?.name,
+  //           permissions: res?.data?.data?.permissions,
+  //         });
+  //       }
+  //       setLoadingInfo(false);
+  //     });
+  //   } else {
+  //     setLoadingInfo(false);
+  //   }
+  // }, [pathName, params.name]);
 
-  function handleResponse(res) {
-    // console.log("res ", res);
-    if (res?.data?._id || res?.data?.success) {
-      setLoading(false);
-      navigate("/management/roles");
-    } else {
-      setLoading(false);
-      setError({
-        isError: true,
-        errorMessage: res?.data?.error || "Some thing went wrong.",
-        errors: res?.data?.errors?.join(", "),
-      });
-    }
-  }
+  // function handleResponse(res) {
+  //   // console.log("res ", res);
+  //   if (res?.data?._id || res?.data?.success) {
+  //     setLoading(false);
+  //     navigate("/management/roles");
+  //   } else {
+  //     setLoading(false);
+  //     setError({
+  //       isError: true,
+  //       errorMessage: res?.data?.error || "Some thing went wrong.",
+  //       errors: res?.data?.errors?.join(", "),
+  //     });
+  //   }
+  // }
   const AdminPermissions = {
     vehicles: {
       view: true,
@@ -155,27 +174,47 @@ function AddEdit() {
     },
   };
   const handleSave = () => {
-    const requestBody = {
-      name: Info.name,
-      permissions: Info.name === "Admin" ? AdminPermissions : Info.permissions,
-    };
-    setLoading(true);
-    setError({
-      isError: false,
-      errorMessage: "",
-      errors: "",
-    });
-
     if (pathName?.includes("edit")) {
-      axiosInstance.put(API.roles + `/${Info.id}`, requestBody).then((res) => {
-        handleResponse(res);
-      });
+      let index = RolesData?.findIndex((ele) => ele?.id === Info?.id);
+      let data = RolesData.slice();
+      data[index] = {
+        ...Info,
+      };
+      setRolesData(data);
+      navigate("/management/roles");
     } else {
-      axiosInstance.post(API.create_roles, requestBody).then((res) => {
-        handleResponse(res);
-      });
+      setRolesData((prev) => [
+        {
+          ...Info,
+          id: Math.random(),
+        },
+        ...(prev || []),
+      ]);
+      navigate("/management/roles");
     }
   };
+  // const handleSave = () => {
+  //   const requestBody = {
+  //     name: Info.name,
+  //     permissions: Info.name === "Admin" ? AdminPermissions : Info.permissions,
+  //   };
+  //   setLoading(true);
+  //   setError({
+  //     isError: false,
+  //     errorMessage: "",
+  //     errors: "",
+  //   });
+
+  //   if (pathName?.includes("edit")) {
+  //     axiosInstance.put(API.roles + `/${Info.id}`, requestBody).then((res) => {
+  //       handleResponse(res);
+  //     });
+  //   } else {
+  //     axiosInstance.post(API.create_roles, requestBody).then((res) => {
+  //       handleResponse(res);
+  //     });
+  //   }
+  // };
   const tableLabelStyle = {
     fontSize: "16px",
     fontWeight: 400,

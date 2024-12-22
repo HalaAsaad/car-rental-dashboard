@@ -32,7 +32,7 @@ const RemoveDialog = ({
       message={message ? message : "Are you sure to delete item?"}
       action={
         <Button
-          color="secondary"
+          color="error"
           variant="contained"
           size="small"
           onClick={handleSave ? handleSave : handleRemove}

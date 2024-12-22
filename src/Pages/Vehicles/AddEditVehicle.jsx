@@ -62,6 +62,7 @@ function AddEdit() {
     out_of_service: false,
   });
   console.log("info ", Info);
+  console.log("VehiclesData ", VehiclesData);
   // const [files, setFiles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [LoadingInfo, setLoadingInfo] = useState(true);
@@ -173,9 +174,21 @@ function AddEdit() {
   // }
   const handleSave = () => {
     if (pathName?.includes("edit")) {
+      let index = VehiclesData?.findIndex((ele) => ele?.id === Info?.id);
+      let data = VehiclesData.slice();
+      data[index] = Info;
+      if (typeof data[index].year === "object") {
+        data[index].year = new Date(data[index]?.year).getFullYear();
+      }
+      setVehiclesData(data);
+      navigate("/vehicles");
     } else {
       setVehiclesData((prev) => [
-        { ...Info, id: Math.random() },
+        {
+          ...Info,
+          year: Info.year ? new Date(Info.year).getFullYear() : "",
+          id: Math.random(),
+        },
         ...(prev || []),
       ]);
       navigate("/vehicles");
@@ -442,9 +455,9 @@ function AddEdit() {
                 variant="subtitle2"
                 textAlign={"left"}
               >
-                Out of service
+                State
               </Typography>
-              <Checkbox
+              {/* <Checkbox
                 sx={{ marginRight: "auto" }}
                 checked={Info?.out_of_service}
                 color="secondary"
@@ -455,8 +468,8 @@ function AddEdit() {
                   }));
                 }}
                 inputProps={{ "aria-label": "controlled" }}
-              />
-              {/* <Select
+              /> */}
+              <Select
                 value={Info?.state || ""}
                 onChange={(event) => {
                   setInfo((prev) => ({
@@ -479,7 +492,7 @@ function AddEdit() {
                     {ele.label}
                   </MenuItem>
                 ))}
-              </Select> */}
+              </Select>
             </Grid>
             <Grid
               size={{ xs: 12, sm: 6 }}

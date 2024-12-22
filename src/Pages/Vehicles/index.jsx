@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import axiosInstance from "../../axiosInstance";
-import API from "../../api";
+// import axiosInstance from "../../axiosInstance";
+// import API from "../../api";
 import Filter from "./Filter";
 import ActionCellMenu from "../../Components/ActionCellMenu";
 import { AppContext } from "../../Context/AppContext";
@@ -43,7 +43,7 @@ function Vehicles({ permissions }) {
   });
   const [OpenRemove, setOpenRemove] = useState(false);
   const [RowData, setRowData] = useState({});
-  const [Refresh, setRefresh] = useState(false);
+  // const [Refresh, setRefresh] = useState(false);
   const [pageSize, setPageSize] = useState(10);
   const [page, setPage] = useState(0);
   const [totalRecords, setTotalRecords] = useState(0);
