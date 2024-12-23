@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import axiosInstance from "../../axiosInstance";
-import API from "../../api";
+// import axiosInstance from "../../axiosInstance";
+// import API from "../../api";
 import Filter from "./Filter";
 import ActionCellMenu from "../../Components/ActionCellMenu";
 import { AppContext } from "../../Context/AppContext";
@@ -16,11 +16,13 @@ import {
 import { useNavigate } from "react-router-dom";
 import RemoveDialog from "../../Components/RemoveDialog";
 import DateBody from "../../Components/Columns/DateBody";
+import { deleteItemFromArray } from "../../lib";
 
 function Customers({ permissions }) {
   const navigate = useNavigate();
-  const { setShowBackButton } = useContext(AppContext);
-  const [DataTable, setDataTable] = useState([]);
+  const { setShowBackButton, CustomersData, setCustomersData } =
+    useContext(AppContext);
+  // const [DataTable, setDataTable] = useState([]);
   const [AllCustomers, setAllCustomers] = useState([]);
   const [filterValues, setFilterValues] = useState({
     name: undefined,
@@ -29,7 +31,7 @@ function Customers({ permissions }) {
   });
   const [OpenRemove, setOpenRemove] = useState(false);
   const [RowData, setRowData] = useState({});
-  const [Refresh, setRefresh] = useState(false);
+  // const [Refresh, setRefresh] = useState(false);
   const [pageSize] = useState(10);
   const [page, setPage] = useState(0);
   const [totalRecords, setTotalRecords] = useState(0);
@@ -38,39 +40,39 @@ function Customers({ permissions }) {
   useEffect(() => {
     setShowBackButton(false);
   }, []);
-  useEffect(() => {
-    setAllCustomers([]);
-    axiosInstance.get(API.customers).then((res) => {
-      setAllCustomers(res?.data?.data || []);
-    });
-  }, [Refresh]);
-  useEffect(() => {
-    setLoading(true);
-    axiosInstance
-      .get(API.customers, {
-        params: {
-          name: filterValues?.name,
-          phoneNumber: filterValues?.phoneNumber,
-          email: filterValues?.email,
-        },
-      })
-      .then((res) => {
-        setTotalRecords(res?.data?.data?.length);
-        let data = res?.data?.data?.map((val) => ({
-          ...val,
-          id: val?._id,
-          role_name: val?.role?.name || "",
-        }));
-        setPage(0);
-        setDataTable([...data]);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setTotalRecords(0);
-        setDataTable([]);
-        setLoading(false);
-      });
-  }, [filterValues, Refresh]);
+  // useEffect(() => {
+  //   setAllCustomers([]);
+  //   axiosInstance.get(API.customers).then((res) => {
+  //     setAllCustomers(res?.data?.data || []);
+  //   });
+  // }, [Refresh]);
+  // useEffect(() => {
+  //   setLoading(true);
+  //   axiosInstance
+  //     .get(API.customers, {
+  //       params: {
+  //         name: filterValues?.name,
+  //         phoneNumber: filterValues?.phoneNumber,
+  //         email: filterValues?.email,
+  //       },
+  //     })
+  //     .then((res) => {
+  //       setTotalRecords(res?.data?.data?.length);
+  //       let data = res?.data?.data?.map((val) => ({
+  //         ...val,
+  //         id: val?._id,
+  //         role_name: val?.role?.name || "",
+  //       }));
+  //       setPage(0);
+  //       setDataTable([...data]);
+  //       setLoading(false);
+  //     })
+  //     .catch((err) => {
+  //       setTotalRecords(0);
+  //       setDataTable([]);
+  //       setLoading(false);
+  //     });
+  // }, [filterValues, Refresh]);
 
   const columns = [
     {
@@ -149,7 +151,7 @@ function Customers({ permissions }) {
                   label: "View",
                   onClick: () => {
                     setShowBackButton(true);
-                    navigate(`/customers/details/${params?.row?._id}`);
+                    navigate(`/customers/details/${params?.row?.id}`);
                   },
                   hide: !permissions?.customers?.view,
                 },
@@ -157,14 +159,14 @@ function Customers({ permissions }) {
                   icon: <BorderColorOutlinedIcon />,
                   label: "Edit",
                   onClick: () => {
-                    navigate(`/customers/edit/${params?.row?._id}`);
+                    navigate(`/customers/edit/${params?.row?.id}`);
                   },
                   hide: !permissions?.customers?.edit,
                 },
                 {
-                  icon: <DeleteOutlinedIcon color="secondary" />,
+                  icon: <DeleteOutlinedIcon color="error" />,
                   label: "Delete",
-                  color: "secondary",
+                  color: "error",
                   onClick: () => {
                     setRowData(params?.row);
                     setOpenRemove(true);
@@ -194,7 +196,10 @@ function Customers({ permissions }) {
             <CircularProgress />
           ) : (
             <DataGrid
-              rows={DataTable || []}
+              //rows={DataTable || []}
+              rows={
+                CustomersData?.map((ele, i) => ({ ...ele, index: i })) || []
+              }
               columns={columns}
               style={{ overflow: "auto" }}
               pagination
@@ -244,10 +249,15 @@ function Customers({ permissions }) {
       <RemoveDialog
         open={OpenRemove}
         setOpen={setOpenRemove}
-        endpoint={API.customers}
-        itemId={RowData?._id}
-        setRefresh={setRefresh}
-        Refresh={Refresh}
+        handleSave={() => {
+          let newData = deleteItemFromArray(CustomersData, RowData.index);
+          setCustomersData(newData);
+          setOpenRemove(false);
+        }}
+        // endpoint={API.customers}
+        // itemId={RowData?._id}
+        // setRefresh={setRefresh}
+        // Refresh={Refresh}
       />
     </>
   );

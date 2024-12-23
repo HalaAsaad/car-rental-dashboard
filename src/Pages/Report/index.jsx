@@ -33,9 +33,18 @@ function Report() {
     helperTo: dayjs().endOf("month"),
   });
   const [RevenueData, setRevenueData] = useState({
-    currentPeriod: [], // [10, 5, 15, 40],
-    previousPeriod: [], // [15, 10, 30, 5],
-    xAxis: [],
+    currentPeriod: [
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 10, 17, 20, 16, 20, 20, 12,
+      10, 15, 30, 30, 27, 28, 29, 30,
+    ], // []
+    previousPeriod: [
+      10, 2, 13, 24, 15, 26, 17, 18, 20, 10, 11, 12, 13, 14, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    ], // []
+    xAxis: [
+      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+      22, 23, 24, 25, 26, 27, 28, 29, 30,
+    ], // []
   });
   const [LoadingRevenue, setLoadingRevenue] = useState(false);
   const [anchorEl_S1, setAnchorEl_S1] = React.useState(null);
@@ -45,7 +54,29 @@ function Report() {
     from: dayjs().startOf("month"),
     to: dayjs().endOf("month"),
   });
-  const [BookingTimeData, setBookingTimeData] = useState([]);
+  const [BookingTimeData, setBookingTimeData] = useState([
+    // []
+    {
+      value: 10,
+      name: "week 1",
+      percentage: "30",
+    },
+    {
+      value: 5,
+      name: "week 2",
+      percentage: "20",
+    },
+    {
+      value: 10,
+      name: "week 3",
+      percentage: "30",
+    },
+    {
+      value: 5,
+      name: "week 4",
+      percentage: "20",
+    },
+  ]);
   const [LoadingBookingTime, setLoadingBookingTime] = useState(false);
   //#endregion S2 BookingTime state
 
@@ -76,9 +107,9 @@ function Report() {
     helperTo: dayjs().endOf("month"),
   });
   const [TotalBookingsData, setTotalBookingsData] = useState({
-    currentPeriod: [], // [10, 5, 15, 40],
-    previousPeriod: [], // [15, 10, 30, 5],
-    xAxis: [],
+    currentPeriod: [10, 5, 2, 40], // []
+    previousPeriod: [15, 10, 30, 5], // []
+    xAxis: [1, 2, 3, 4], // []
   });
   const [LoadingTotalBookings, setLoadingTotalBookings] = useState(false);
   const [anchorEl_S4, setAnchorEl_S4] = React.useState(null);
@@ -87,62 +118,62 @@ function Report() {
   useEffect(() => {
     setShowBackButton(false);
   }, []);
-  // get Revenue S1
-  useEffect(() => {
-    setLoadingRevenue(true);
-    axiosInstance
-      .get("/reports/revenue", {
-        params: {
-          startDate: dayjs(DateFilterRevenue.from).format("YYYY-MM-DD"),
-          endDate: dayjs(DateFilterRevenue.to).format("YYYY-MM-DD"),
-        },
-      })
-      .then((res) => {
-        let data = res?.data?.data;
-        let xAxis = [
-          ...new Set(
-            [...(data?.last || []), ...(data?.current || [])].map((ele) =>
-              dayjs(ele?.date).format("D MMM")
-            )
-          ),
-        ];
-        // let last
-        let currentPeriod = [
-          ...Array(data?.last?.length).fill(0),
-          ...(data?.current || []).map((ele) => ele?.totalRevenue),
-        ];
-        let previousPeriod = [
-          ...(data?.last || []).map((ele) => ele?.totalRevenue),
-          ...Array(data?.current?.length).fill(0),
-        ];
-        setRevenueData({
-          currentPeriod: currentPeriod,
-          previousPeriod: previousPeriod,
-          xAxis: xAxis,
-        });
-        setLoadingRevenue(false);
-      });
-  }, [DateFilterRevenue.from, DateFilterRevenue.to]);
-  // get BookingTime S2
-  useEffect(() => {
-    setLoadingBookingTime(true);
-    axiosInstance
-      .get("/reports/weekly-booking-data", {
-        params: {
-          year: new Date(DateFilterBooking.from).getFullYear(),
-          month: new Date(DateFilterBooking.from).getMonth() + 1,
-        },
-      })
-      .then((res) => {
-        let data = res?.data?.data?.map((val) => ({
-          value: val?.totalOrders,
-          name: val?.week,
-          percentage: val?.percentage,
-        }));
-        setBookingTimeData(data);
-        setLoadingBookingTime(false);
-      });
-  }, [DateFilterBooking]);
+  // // get Revenue S1
+  // useEffect(() => {
+  //   setLoadingRevenue(true);
+  //   axiosInstance
+  //     .get("/reports/revenue", {
+  //       params: {
+  //         startDate: dayjs(DateFilterRevenue.from).format("YYYY-MM-DD"),
+  //         endDate: dayjs(DateFilterRevenue.to).format("YYYY-MM-DD"),
+  //       },
+  //     })
+  //     .then((res) => {
+  //       let data = res?.data?.data;
+  //       let xAxis = [
+  //         ...new Set(
+  //           [...(data?.last || []), ...(data?.current || [])].map((ele) =>
+  //             dayjs(ele?.date).format("D MMM")
+  //           )
+  //         ),
+  //       ];
+  //       // let last
+  //       let currentPeriod = [
+  //         ...Array(data?.last?.length).fill(0),
+  //         ...(data?.current || []).map((ele) => ele?.totalRevenue),
+  //       ];
+  //       let previousPeriod = [
+  //         ...(data?.last || []).map((ele) => ele?.totalRevenue),
+  //         ...Array(data?.current?.length).fill(0),
+  //       ];
+  //       setRevenueData({
+  //         currentPeriod: currentPeriod,
+  //         previousPeriod: previousPeriod,
+  //         xAxis: xAxis,
+  //       });
+  //       setLoadingRevenue(false);
+  //     });
+  // }, [DateFilterRevenue.from, DateFilterRevenue.to]);
+  // // get BookingTime S2
+  // useEffect(() => {
+  //   setLoadingBookingTime(true);
+  //   axiosInstance
+  //     .get("/reports/weekly-booking-data", {
+  //       params: {
+  //         year: new Date(DateFilterBooking.from).getFullYear(),
+  //         month: new Date(DateFilterBooking.from).getMonth() + 1,
+  //       },
+  //     })
+  //     .then((res) => {
+  //       let data = res?.data?.data?.map((val) => ({
+  //         value: val?.totalOrders,
+  //         name: val?.week,
+  //         percentage: val?.percentage,
+  //       }));
+  //       setBookingTimeData(data);
+  //       setLoadingBookingTime(false);
+  //     });
+  // }, [DateFilterBooking]);
   // get recentTransactions S3
   useEffect(() => {
     setLoadingRecentTransactions(true);
@@ -165,43 +196,43 @@ function Report() {
       });
   }, [DateFilterRecentTransactions.from, DateFilterRecentTransactions.to]);
   // get Total bookings S4
-  useEffect(() => {
-    setLoadingTotalBookings(true);
-    axiosInstance
-      .get("/reports/revenue", {
-        params: {
-          startDate: dayjs(DateFilterTotalBookings.from).format("YYYY-MM-DD"),
-          endDate: dayjs(DateFilterTotalBookings.to).format("YYYY-MM-DD"),
-        },
-      })
-      .then((res) => {
-        let data = res?.data?.data;
+  // useEffect(() => {
+  //   setLoadingTotalBookings(true);
+  //   axiosInstance
+  //     .get("/reports/revenue", {
+  //       params: {
+  //         startDate: dayjs(DateFilterTotalBookings.from).format("YYYY-MM-DD"),
+  //         endDate: dayjs(DateFilterTotalBookings.to).format("YYYY-MM-DD"),
+  //       },
+  //     })
+  //     .then((res) => {
+  //       let data = res?.data?.data;
 
-        let last = data?.last || [];
-        // last.pop();
-        let xAxis = [
-          ...new Set(
-            [...(last || []), ...(data?.current || [])].map((ele) =>
-              dayjs(ele?.date).format("D MMM")
-            )
-          ),
-        ];
-        let currentPeriod = [
-          ...Array(last?.length).fill(0),
-          ...(data?.current || []).map((ele) => ele?.totalOrders),
-        ];
-        let previousPeriod = [
-          ...(last || []).map((ele) => ele?.totalOrders),
-          ...Array(data?.current?.length).fill(0),
-        ];
-        setTotalBookingsData({
-          currentPeriod: currentPeriod,
-          previousPeriod: previousPeriod,
-          xAxis: xAxis,
-        });
-        setLoadingTotalBookings(false);
-      });
-  }, [DateFilterTotalBookings.from, DateFilterTotalBookings.to]);
+  //       let last = data?.last || [];
+  //       // last.pop();
+  //       let xAxis = [
+  //         ...new Set(
+  //           [...(last || []), ...(data?.current || [])].map((ele) =>
+  //             dayjs(ele?.date).format("D MMM")
+  //           )
+  //         ),
+  //       ];
+  //       let currentPeriod = [
+  //         ...Array(last?.length).fill(0),
+  //         ...(data?.current || []).map((ele) => ele?.totalOrders),
+  //       ];
+  //       let previousPeriod = [
+  //         ...(last || []).map((ele) => ele?.totalOrders),
+  //         ...Array(data?.current?.length).fill(0),
+  //       ];
+  //       setTotalBookingsData({
+  //         currentPeriod: currentPeriod,
+  //         previousPeriod: previousPeriod,
+  //         xAxis: xAxis,
+  //       });
+  //       setLoadingTotalBookings(false);
+  //     });
+  // }, [DateFilterTotalBookings.from, DateFilterTotalBookings.to]);
   // console.log("TotalBookingsData ", TotalBookingsData);
   function formateDateValue(period) {
     let selectedFrom;
@@ -268,7 +299,7 @@ function Report() {
       </Typography>
     </Stack>
   );
-  const bookingTimeColors = ["#B90000", "#191919", "#FF3A3A", "#FEE6C9"];
+  const bookingTimeColors = ["#1A75BB", "#191919", "#FF9407", "#FEE6C9"];
 
   const RevenueSection = (
     <>
@@ -400,8 +431,8 @@ function Report() {
             <Grid size={{ xs: 12, sm: 12, md: 12 }}>
               <Box display={"flex"} alignItems={"center"}>
                 {[
-                  { label: "Current Period" },
-                  { label: "Previous Period" },
+                  { label: "Previous Period", color: bookingTimeColors[1] },
+                  { label: "Current Period", color: bookingTimeColors[0] },
                 ]?.map((ele, i) => (
                   <Box
                     key={i}
@@ -415,7 +446,7 @@ function Report() {
                         height: 10,
                         width: 10,
                         borderRadius: "50%",
-                        backgroundColor: bookingTimeColors[i],
+                        backgroundColor: ele.color,
                         marginRight: 1,
                       }}
                     />

@@ -2,6 +2,7 @@ import React, { createContext, useState } from "react";
 import VehiclesDataJson from "../Pages/Vehicles/data.json";
 import UsersDataJson from "../Pages/Users/data.json";
 import RolesDataJson from "../Pages/Roles/data.json";
+import CustomersDataJson from "../Pages/Customers/data.json";
 
 export const AppContext = createContext(null);
 
@@ -14,6 +15,7 @@ export const AppContextProvider = ({ children }) => {
   const [VehiclesData, setVehiclesData] = useState(VehiclesDataJson);
   const [UsersData, setUsersData] = useState(UsersDataJson);
   const [RolesData, setRolesData] = useState(RolesDataJson);
+  const [CustomersData, setCustomersData] = useState(CustomersDataJson);
   const defaultContext = {
     ShowBackButton,
     setShowBackButton,
@@ -25,6 +27,8 @@ export const AppContextProvider = ({ children }) => {
     setUsersData,
     RolesData,
     setRolesData,
+    CustomersData,
+    setCustomersData,
   };
 
   return (

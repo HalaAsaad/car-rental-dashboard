@@ -46,13 +46,14 @@ function AddEdit() {
   const params = useParams();
   const theme = useTheme();
   // console.log("params ", params.name);
-  const { setShowBackButton } = useContext(AppContext);
+  const { setShowBackButton, CustomersData, setCustomersData } =
+    useContext(AppContext);
   let pathName = window.location.pathname;
   const [Info, setInfo] = useState({
     id: undefined,
     name: undefined,
     email: undefined,
-    phone: undefined,
+    phoneNumber: undefined,
 
     image: undefined,
     dateOfBirth: undefined,
@@ -88,29 +89,54 @@ function AddEdit() {
   useEffect(() => {
     if (pathName?.includes("edit")) {
       // get car info by name
-      setLoadingInfo(true);
-      axiosInstance
-        .get(API.customers + `/${params.name}`)
-        .then((res) => {
-          // console.log(res?.data?.data);
-          if (res?.data?.success) {
-            setInfo({
-              id: res?.data?.data?._id,
-              name: res?.data?.data?.name,
-              email: res?.data?.data?.email,
-              phone: res?.data?.data?.phoneNumber,
-              image: res?.data?.data?.image,
-              dateOfBirth: dayjs(res?.data?.data?.dateOfBirth),
-              policyNumber: res?.data?.data?.policyNumber,
-              paymentMethod: res?.data?.data?.paymentMethod,
-              status: res?.data?.data?.status || res?.data?.data?.stattus,
-            });
-          }
-          setLoadingInfo(false);
-        })
-        .catch((err) => {});
+      setLoading(true);
+      let findItem = CustomersData?.find((ele) => `${ele?.id}` === params.name);
+      if (findItem) {
+        setInfo({
+          id: findItem?.id,
+          name: findItem?.name,
+          email: findItem?.email,
+          phoneNumber: findItem?.phoneNumber,
+          image: findItem?.image,
+          dateOfBirth: dayjs(findItem?.dateOfBirth),
+          policyNumber: findItem?.policyNumber,
+          paymentMethod: findItem?.paymentMethod,
+          status: findItem?.status,
+        });
+      }
+      setLoadingInfo(false);
+      setLoading(false);
+    } else {
+      setLoadingInfo(false);
+      setLoading(false);
     }
-  }, [pathName, params.name]);
+  }, [params.name, CustomersData]);
+  // useEffect(() => {
+  //   if (pathName?.includes("edit")) {
+  //     // get car info by name
+  //     setLoadingInfo(true);
+  //     axiosInstance
+  //       .get(API.customers + `/${params.name}`)
+  //       .then((res) => {
+  //         // console.log(res?.data?.data);
+  //         if (res?.data?.success) {
+  //           setInfo({
+  //             id: res?.data?.data?._id,
+  //             name: res?.data?.data?.name,
+  //             email: res?.data?.data?.email,
+  //             phone: res?.data?.data?.phoneNumber,
+  //             image: res?.data?.data?.image,
+  //             dateOfBirth: dayjs(res?.data?.data?.dateOfBirth),
+  //             policyNumber: res?.data?.data?.policyNumber,
+  //             paymentMethod: res?.data?.data?.paymentMethod,
+  //             status: res?.data?.data?.status,
+  //           });
+  //         }
+  //         setLoadingInfo(false);
+  //       })
+  //       .catch((err) => {});
+  //   }
+  // }, [pathName, params.name]);
   useEffect(() => {
     axiosInstance
       .get(API.roles_getall)
@@ -123,20 +149,20 @@ function AddEdit() {
       });
   }, []);
 
-  function handleResponse(res) {
-    // console.log("res ", res);
-    if (res?.data?.success === true || res?.data?.customer?._id) {
-      setLoading(false);
-      navigate("/customers");
-    } else {
-      setLoading(false);
-      setError({
-        isError: true,
-        errorMessage: res?.data?.error || "Some thing went wrong.",
-        errors: res?.data?.errors?.join(", "),
-      });
-    }
-  }
+  // function handleResponse(res) {
+  //   // console.log("res ", res);
+  //   if (res?.data?.success === true || res?.data?.customer?._id) {
+  //     setLoading(false);
+  //     navigate("/customers");
+  //   } else {
+  //     setLoading(false);
+  //     setError({
+  //       isError: true,
+  //       errorMessage: res?.data?.error || "Some thing went wrong.",
+  //       errors: res?.data?.errors?.join(", "),
+  //     });
+  //   }
+  // }
 
   // "paymentMethods": [
   //   {
@@ -147,34 +173,55 @@ function AddEdit() {
   //     "cvc": "123"
   //   }
   // ]
+
   const handleSave = () => {
-    let bodyData = new FormData();
-    bodyData.append("name", Info?.name);
-    bodyData.append("email", Info?.email);
-    bodyData.append("phoneNumber", Info?.phone);
-
-    bodyData.append("dateOfBirth", Info?.dateOfBirth);
-    bodyData.append("policyNumber", Info?.policyNumber);
-    bodyData.append("paymentMethod", Info?.paymentMethod);
-    bodyData.append("status", Info?.status);
-    // bodyData.append("image", File);
-    setLoading(true);
-    setError({
-      isError: false,
-      errorMessage: "",
-      errors: "",
-    });
-
     if (pathName?.includes("edit")) {
-      axiosInstance.put(API.customers + `/${Info.id}`, bodyData).then((res) => {
-        handleResponse(res);
-      });
+      let index = CustomersData?.findIndex((ele) => ele?.id === Info?.id);
+      let data = CustomersData.slice();
+      data[index] = {
+        ...Info,
+      };
+      setCustomersData(data);
+      navigate("/customers");
     } else {
-      axiosInstance.post(API.customers, bodyData).then((res) => {
-        handleResponse(res);
-      });
+      setCustomersData((prev) => [
+        {
+          ...Info,
+          id: Math.random(),
+        },
+        ...(prev || []),
+      ]);
+      navigate("/customers");
     }
   };
+  // const handleSave = () => {
+  //   let bodyData = new FormData();
+  //   bodyData.append("name", Info?.name);
+  //   bodyData.append("email", Info?.email);
+  //   bodyData.append("phoneNumber", Info?.phone);
+
+  //   bodyData.append("dateOfBirth", Info?.dateOfBirth);
+  //   bodyData.append("policyNumber", Info?.policyNumber);
+  //   bodyData.append("paymentMethod", Info?.paymentMethod);
+  //   bodyData.append("status", Info?.status);
+  //   // bodyData.append("image", File);
+  //   setLoading(true);
+  //   setError({
+  //     isError: false,
+  //     errorMessage: "",
+  //     errors: "",
+  //   });
+
+  //   if (pathName?.includes("edit")) {
+  //     axiosInstance.put(API.customers + `/${Info.id}`, bodyData).then((res) => {
+  //       handleResponse(res);
+  //     });
+  //   } else {
+  //     axiosInstance.post(API.customers, bodyData).then((res) => {
+  //       handleResponse(res);
+  //     });
+  //   }
+  // };
   const renderMuiAccordionSummary = (label, image) => (
     <MuiAccordionSummary aria-controls="panel1d-content" id="panel1d-header">
       <Box
@@ -389,11 +436,11 @@ function AddEdit() {
                 placeholder="Enter user phone number"
                 // size="small"
                 fullWidth
-                value={Info?.phone || ""}
+                value={Info?.phoneNumber || ""}
                 onChange={(event) => {
                   setInfo((prev) => ({
                     ...prev,
-                    phone: event.target.value,
+                    phoneNumber: event.target.value,
                   }));
                 }}
               />
