@@ -20,20 +20,21 @@ import { useTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import API from "../../api";
 import "./index.css";
+import data from "./data.json";
 
 function CalendarComponent() {
   const theme = useTheme();
   const navigate = useNavigate();
-  const { setShowBackButton } = useContext(AppContext);
+  const { setShowBackButton, VehiclesData } = useContext(AppContext);
   const [filterValues, setFilterValues] = useState({
     carId: undefined,
-    year: new Date().getFullYear(),
-    month: new Date().getMonth() + 1,
+    year: 2025, //new Date().getFullYear(),
+    month: 1, //new Date().getMonth() + 1,
   });
   const [OpenShowMoreDialog, setOpenShowMoreDialog] = useState(false);
   const [Loading, setLoading] = useState(false);
   const [SelectedDate, setSelectedDate] = useState("");
-  const [Events, setEvents] = useState({});
+  const [Events, setEvents] = useState(data); // {}
   const [CarIDsOptions, setCarIDsOptions] = useState([]);
   // const [CarsId, setCarsId] = useState({})
   console.log("filterValues ", filterValues);
@@ -43,36 +44,47 @@ function CalendarComponent() {
   useEffect(() => {
     // get all without filter
 
-    axiosInstance.get(API.vehicles).then((res) => {
-      let allCars = [];
-      res?.data?.data?.forEach((ele) => {
-        allCars = [...allCars, ele?.carId];
-      });
-      setCarIDsOptions([...new Set(allCars)]);
+    // axiosInstance.get(API.vehicles).then((res) => {
+    //   let allCars = [];
+    //   res?.data?.data?.forEach((ele) => {
+    //     allCars = [...allCars, ele?.carId];
+    //   });
+    //   setCarIDsOptions([...new Set(allCars)]);
+    // });
+
+    let allCars = [];
+    VehiclesData?.forEach((ele) => {
+      allCars = [...allCars, ele?.carId];
     });
-  }, []);
-  useEffect(() => {
-    setLoading(true);
-    setEvents({});
-    axiosInstance
-      .get("/calender/events", {
-        params: {
-          year: filterValues?.year,
-          month: filterValues?.month,
-          carId: filterValues?.carId,
-        },
-      })
-      .then((res) => {
-        // console.log("res?.data", res?.data);
-        if (res?.data) {
-          setEvents(res?.data);
-        }
-        setLoading(false);
-      })
-      .catch((err) => {
-        setLoading(false);
-      });
-  }, [filterValues]);
+    setCarIDsOptions(
+      [...new Set(allCars)]?.filter(
+        (id) => id !== undefined && id !== "" && id !== null
+      )
+    );
+  }, [VehiclesData]);
+  // useEffect(() => {
+  //   setLoading(true);
+  //   setEvents({});
+  //   axiosInstance
+  //     .get("/calender/events", {
+  //       params: {
+  //         year: filterValues?.year,
+  //         month: filterValues?.month,
+  //         carId: filterValues?.carId,
+  //       },
+  //     })
+  //     .then((res) => {
+  //       // console.log("res?.data", res?.data);
+  //       if (res?.data) {
+  //         setEvents(res?.data);
+  //       }
+  //       setLoading(false);
+  //     })
+  //     .catch((err) => {
+  //       setLoading(false);
+  //     });
+  // }, [filterValues]);
+
   const colors = {
     "Maintenance Reminder": "#FEE6C9",
     "Pickup Date": "#DFFDEE",
@@ -289,13 +301,13 @@ function CalendarComponent() {
                       lineHeight: "15px",
                       textAlign: "left",
                       display: "inline-block",
-                      cursor: "pointer",
+                      // cursor: "pointer",
                     }}
-                    onClick={() =>
-                      event?.eventType?.includes("Maintenance")
-                        ? navigateToMaintenance(event?.carIdObject)
-                        : navigateToVehicle(event?.carIdObject)
-                    }
+                    // onClick={() =>
+                    //   event?.eventType?.includes("Maintenance")
+                    //     ? navigateToMaintenance(event?.carIdObject)
+                    //     : navigateToVehicle(event?.carIdObject)
+                    // }
                   >
                     {event?.brand} {event?.carId} - &nbsp;
                   </Typography>

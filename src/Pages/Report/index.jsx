@@ -21,6 +21,32 @@ import ReactECharts from "echarts-for-react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import ReportCalender from "./ReportCalender";
 
+const recentTransactions = [
+  {
+    id: "676d79db4ecfd30beae23922",
+    vehicle: "TEST TEST",
+    media: "/images/car_1.png",
+    rentalPeriod: "26/12/2024 - 27/12/2024",
+    totalPrice: 600,
+    customer: "Doe",
+  },
+  {
+    id: "676d79db4ecfd30beae23922",
+    vehicle: "TEST TEST",
+    media: "/images/car_2.png",
+    rentalPeriod: "26/12/2024 - 27/12/2024",
+    totalPrice: 400,
+    customer: "Antoine",
+  },
+  {
+    id: "676d79db4ecfd30beae23922",
+    vehicle: "TEST TEST",
+    media: "/images/car_3.png",
+    rentalPeriod: "26/12/2024 - 27/12/2024",
+    totalPrice: 500,
+    customer: "Hla",
+  },
+];
 function Report() {
   const navigate = useNavigate();
   const theme = useTheme();
@@ -88,7 +114,8 @@ function Report() {
       helperFrom: dayjs().startOf("month"),
       helperTo: dayjs().endOf("month"),
     });
-  const [RecentTransactionsData, setRecentTransactionsData] = useState([]);
+  const [RecentTransactionsData, setRecentTransactionsData] =
+    useState(recentTransactions);
   const [LoadingRecentTransactions, setLoadingRecentTransactions] =
     useState(false);
   const rowPerPage = 4;
@@ -174,27 +201,27 @@ function Report() {
   //       setLoadingBookingTime(false);
   //     });
   // }, [DateFilterBooking]);
-  // get recentTransactions S3
-  useEffect(() => {
-    setLoadingRecentTransactions(true);
-    axiosInstance
-      .get("/reports/recentTransactions", {
-        params: {
-          from: dayjs(DateFilterRecentTransactions.from).format("YYYY-MM-DD"),
-          to: dayjs(DateFilterRecentTransactions.to).format("YYYY-MM-DD"),
-        },
-      })
-      .then((res) => {
-        let data = [];
-        res?.data?.data?.forEach((ele) => {
-          ele?.cars?.forEach((car, i) => {
-            data = [...data, { ...car, customer: ele?.customer, n: i + 1 }];
-          });
-        });
-        setRecentTransactionsData(data);
-        setLoadingRecentTransactions(false);
-      });
-  }, [DateFilterRecentTransactions.from, DateFilterRecentTransactions.to]);
+  // // get recentTransactions S3
+  // useEffect(() => {
+  //   setLoadingRecentTransactions(true);
+  //   axiosInstance
+  //     .get("/reports/recentTransactions", {
+  //       params: {
+  //         from: dayjs(DateFilterRecentTransactions.from).format("YYYY-MM-DD"),
+  //         to: dayjs(DateFilterRecentTransactions.to).format("YYYY-MM-DD"),
+  //       },
+  //     })
+  //     .then((res) => {
+  //       let data = [];
+  //       res?.data?.data?.forEach((ele) => {
+  //         ele?.cars?.forEach((car, i) => {
+  //           data = [...data, { ...car, customer: ele?.customer, n: i + 1 }];
+  //         });
+  //       });
+  //       setRecentTransactionsData(data);
+  //       setLoadingRecentTransactions(false);
+  //     });
+  // }, [DateFilterRecentTransactions.from, DateFilterRecentTransactions.to]);
   // get Total bookings S4
   // useEffect(() => {
   //   setLoadingTotalBookings(true);
