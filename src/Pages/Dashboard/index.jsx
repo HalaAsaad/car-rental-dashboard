@@ -39,6 +39,7 @@ import { DataGrid } from "@mui/x-data-grid/DataGrid/DataGrid";
 import ReactECharts from "echarts-for-react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { Calendar } from "react-multi-date-picker";
+import LiveCarStatusData from "./data.json";
 
 function Dashboard({ permissions }) {
   const navigate = useNavigate();
@@ -49,12 +50,12 @@ function Dashboard({ permissions }) {
   const [page, setPage] = useState(0);
   const [totalRecords, setTotalRecords] = useState(0);
   const [Loading, setLoading] = useState(false);
-  const [DataTable, setDataTable] = useState([]);
+  const [DataTable, setDataTable] = useState(LiveCarStatusData); // []
   const [filterValues, setFilterValues] = useState({
     carIds: "", //[],
     from: undefined,
     to: undefined,
-    price: [],
+    price: [0, 1000],
     priceHelper: [],
     status: "", //  enum: ["pending", "confirmed", "canceled"],
   });
@@ -63,11 +64,12 @@ function Dashboard({ permissions }) {
     from: undefined,
     to: undefined,
   });
-  const [MinMaxPrices, setMinMaxPrices] = useState([]);
+  const [MinMaxPrices, setMinMaxPrices] = useState([0, 1000]);
   const [LoadingEarningData, setLoadingEarningData] = useState(false);
   const [EarningData, setEarningData] = useState({
     xAxisData: [],
     currentPeriod: [],
+    previousPeriod: [],
     lastYear: [],
     // seriesDataCurrentPeriod: [0, 0, 0, 0, 0, 0],
     // seriesDataLastYear: [0, 0, 0, 0, 0, 0],
@@ -106,117 +108,117 @@ function Dashboard({ permissions }) {
     setShowBackButton(false);
   }, []);
 
-  useEffect(() => {
-    // get all without filter
-    axiosInstance.get(API.vehicles).then((res) => {
-      let allCars = [];
-      let prices = [];
-      // let isRentedExist = res?.data?.data?.find((ele) => ele?.isRented);
-      // let isIsMaintenaceExist = res?.data?.data?.find(
-      //   (ele) => ele?.IsMaintenance
-      // );
+  // useEffect(() => {
+  //   // get all without filter
+  //   axiosInstance.get(API.vehicles).then((res) => {
+  //     let allCars = [];
+  //     let prices = [];
+  //     // let isRentedExist = res?.data?.data?.find((ele) => ele?.isRented);
+  //     // let isIsMaintenaceExist = res?.data?.data?.find(
+  //     //   (ele) => ele?.IsMaintenance
+  //     // );
 
-      res?.data?.data?.forEach((ele) => {
-        prices = [...prices, ele?.rentalPrice];
-        allCars = [...allCars, ele?.carId];
-      });
-      setCarIDsOptions(
-        [...new Set(allCars)]?.filter(
-          (ele) => ele !== undefined && ele !== null
-        )
-      );
-      let min = Math.min.apply(Math, prices);
-      let max = Math.max.apply(Math, prices);
-      setMinMaxPrices([min, max]);
-      setFilterValues((prev) => ({
-        ...prev,
-        priceHelper: [min, max],
-        price: [min, max],
-      }));
-    });
-  }, []);
-  useEffect(() => {
-    setLoading(true);
-    axiosInstance
-      .get(API.vehicles, {
-        params: {
-          search: AvailabilityFilterValues?.carIds,
-          // carIds: AvailabilityFilterValues?.carIds?.join(","),
-          // pickupDate: AvailabilityFilterValues?.from
-          //   ? new Date(AvailabilityFilterValues?.from)
-          //       .toISOString()
-          //       .split("T")[0]
-          //   : undefined,
-          // pickupTime: AvailabilityFilterValues?.from
-          //   ? new Date(AvailabilityFilterValues?.from)
-          //       .toISOString()
-          //       .split("T")[1]
-          //       .split(".")[0]
-          //   : undefined,
-          // returnDate: AvailabilityFilterValues?.to
-          //   ? new Date(AvailabilityFilterValues?.to).toISOString().split("T")[0]
-          //   : undefined,
-          // returnTime: AvailabilityFilterValues?.to
-          //   ? new Date(AvailabilityFilterValues?.to)
-          //       .toISOString()
-          //       .split("T")[1]
-          //       .split(".")[0]
-          //   : undefined,
+  //     res?.data?.data?.forEach((ele) => {
+  //       prices = [...prices, ele?.rentalPrice];
+  //       allCars = [...allCars, ele?.carId];
+  //     });
+  //     setCarIDsOptions(
+  //       [...new Set(allCars)]?.filter(
+  //         (ele) => ele !== undefined && ele !== null
+  //       )
+  //     );
+  //     let min = Math.min.apply(Math, prices);
+  //     let max = Math.max.apply(Math, prices);
+  //     setMinMaxPrices([min, max]);
+  //     setFilterValues((prev) => ({
+  //       ...prev,
+  //       priceHelper: [min, max],
+  //       price: [min, max],
+  //     }));
+  //   });
+  // }, []);
+  // useEffect(() => {
+  //   setLoading(true);
+  //   axiosInstance
+  //     .get(API.vehicles, {
+  //       params: {
+  //         search: AvailabilityFilterValues?.carIds,
+  //         // carIds: AvailabilityFilterValues?.carIds?.join(","),
+  //         // pickupDate: AvailabilityFilterValues?.from
+  //         //   ? new Date(AvailabilityFilterValues?.from)
+  //         //       .toISOString()
+  //         //       .split("T")[0]
+  //         //   : undefined,
+  //         // pickupTime: AvailabilityFilterValues?.from
+  //         //   ? new Date(AvailabilityFilterValues?.from)
+  //         //       .toISOString()
+  //         //       .split("T")[1]
+  //         //       .split(".")[0]
+  //         //   : undefined,
+  //         // returnDate: AvailabilityFilterValues?.to
+  //         //   ? new Date(AvailabilityFilterValues?.to).toISOString().split("T")[0]
+  //         //   : undefined,
+  //         // returnTime: AvailabilityFilterValues?.to
+  //         //   ? new Date(AvailabilityFilterValues?.to)
+  //         //       .toISOString()
+  //         //       .split("T")[1]
+  //         //       .split(".")[0]
+  //         //   : undefined,
 
-          from: AvailabilityFilterValues?.from
-            ? new Date(AvailabilityFilterValues?.from).toISOString()
-            : undefined,
-          to: AvailabilityFilterValues?.to
-            ? new Date(AvailabilityFilterValues?.to).toISOString()
-            : undefined,
-          priceMin:
-            filterValues?.price?.length > 0
-              ? filterValues?.price[0]
-              : undefined,
-          priceMax:
-            filterValues?.price?.length > 1
-              ? filterValues?.price[1]
-              : undefined,
-          isRented: filterValues?.status?.includes("rented")
-            ? true
-            : filterValues?.status?.includes("available")
-            ? false
-            : undefined,
-          isMaintenance: filterValues?.status?.includes("in maintenance")
-            ? true
-            : filterValues?.status?.includes("available")
-            ? false
-            : undefined,
-          status:
-            filterValues?.status !== "rented" &&
-            filterValues?.status !== "in maintenance"
-              ? filterValues?.status
-              : undefined,
-        },
-      })
-      .then((res) => {
-        setTotalRecords(res?.data?.count);
-        let data = res?.data?.data?.map((val, i) => ({
-          ...val,
-          // orderNumber: i + 1,
-          id: val?._id,
+  //         from: AvailabilityFilterValues?.from
+  //           ? new Date(AvailabilityFilterValues?.from).toISOString()
+  //           : undefined,
+  //         to: AvailabilityFilterValues?.to
+  //           ? new Date(AvailabilityFilterValues?.to).toISOString()
+  //           : undefined,
+  //         priceMin:
+  //           filterValues?.price?.length > 0
+  //             ? filterValues?.price[0]
+  //             : undefined,
+  //         priceMax:
+  //           filterValues?.price?.length > 1
+  //             ? filterValues?.price[1]
+  //             : undefined,
+  //         isRented: filterValues?.status?.includes("rented")
+  //           ? true
+  //           : filterValues?.status?.includes("available")
+  //           ? false
+  //           : undefined,
+  //         isMaintenance: filterValues?.status?.includes("in maintenance")
+  //           ? true
+  //           : filterValues?.status?.includes("available")
+  //           ? false
+  //           : undefined,
+  //         status:
+  //           filterValues?.status !== "rented" &&
+  //           filterValues?.status !== "in maintenance"
+  //             ? filterValues?.status
+  //             : undefined,
+  //       },
+  //     })
+  //     .then((res) => {
+  //       setTotalRecords(res?.data?.count);
+  //       let data = res?.data?.data?.map((val, i) => ({
+  //         ...val,
+  //         // orderNumber: i + 1,
+  //         id: val?._id,
 
-          customer_name: val?.currentCustomer?.customerName
-            ? val?.currentCustomer?.customerName
-            : "",
-          // totalPrice: val?.rentalSummary?.totalPrice || 0,
-        }));
-        // ?.map((ele) => ({ ...ele, currentCustomer: "" }));
-        setPage(0);
-        setDataTable([...data]);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setTotalRecords(0);
-        setDataTable([]);
-        setLoading(false);
-      });
-  }, [AvailabilityFilterValues, filterValues.price, filterValues.status]);
+  //         customer_name: val?.currentCustomer?.customerName
+  //           ? val?.currentCustomer?.customerName
+  //           : "",
+  //         // totalPrice: val?.rentalSummary?.totalPrice || 0,
+  //       }));
+  //       // ?.map((ele) => ({ ...ele, currentCustomer: "" }));
+  //       setPage(0);
+  //       setDataTable([...data]);
+  //       setLoading(false);
+  //     })
+  //     .catch((err) => {
+  //       setTotalRecords(0);
+  //       setDataTable([]);
+  //       setLoading(false);
+  //     });
+  // }, [AvailabilityFilterValues, filterValues.price, filterValues.status]);
   useEffect(() => {
     // Earning Summary
     setLoadingEarningData(true);
@@ -693,17 +695,6 @@ function Dashboard({ permissions }) {
   // };
 
   const columns = [
-    // {
-    //   field: "orderNumber",
-    //   headerName: "No",
-    //   align: "left",
-    //   headerAlign: "left",
-    //   hideSortIcons: false,
-    //   disableColumnMenu: true,
-    //   sortable: true,
-    //   editable: true,
-    //   //renderEditCell: (params) => <CustomTypeEditComponent {...params} />,
-    // },
     {
       field: "carId",
       headerName: "Car number",
@@ -1279,8 +1270,8 @@ function Dashboard({ permissions }) {
                   xAxis: {
                     type: "category",
                     boundaryGap: false,
-                    data: EarningData.currentPeriod?.map((val) => val?.day),
-                    // EarningData?.xAxisData?.map((ele) => ele?.label) || [],
+                    // data: EarningData.currentPeriod?.map((val) => val?.day),
+                    data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
                   },
                   yAxis: {
                     type: "value",
@@ -1303,9 +1294,10 @@ function Dashboard({ permissions }) {
                   axisLine: { show: true, onZero: true },
                   series: [
                     {
-                      data: EarningData.currentPeriod?.map(
-                        (val) => val?.totalEarnings
-                      ), //EarningData?.seriesData,
+                      // data: EarningData.currentPeriod?.map(
+                      //   (val) => val?.totalEarnings
+                      // ), //EarningData?.seriesData,
+                      data: [1220, 1300, 711, 634, 520, 840, 910],
                       type: "line",
                       color: "#006AFF",
                       areaStyle: {
@@ -1314,9 +1306,10 @@ function Dashboard({ permissions }) {
                       smooth: true,
                     },
                     {
-                      data: EarningData?.previousPeriod?.map(
-                        (val) => val?.totalEarnings
-                      ),
+                      // data: EarningData?.previousPeriod?.map(
+                      //   (val) => val?.totalEarnings
+                      // ),
+                      data: [820, 932, 901, 934, 1290, 1330, 1320],
                       type: "line",
                       color: "#656575",
                       lineStyle: {

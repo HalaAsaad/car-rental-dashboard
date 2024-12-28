@@ -1,0 +1,581 @@
+[
+  {
+    "additionalInfo": {
+      "idPhotoUrl": {
+        "url": "https://res.cloudinary.com/beirut-mart/image/upload/v1735160118/skyline-car-rental-media/r3v5v3barnk1wjkpjvdh.jpg",
+        "public_id": "skyline-car-rental-media/r3v5v3barnk1wjkpjvdh"
+      },
+      "insurancePolicyUrl": {
+        "url": "https://res.cloudinary.com/beirut-mart/image/upload/v1735160101/skyline-car-rental-media/hfzglxulj0myd74n20ub.jpg",
+        "public_id": "skyline-car-rental-media/hfzglxulj0myd74n20ub"
+      }
+    },
+    "payment": {
+      "method": ["Cash"],
+      "reminder": "Weekly"
+    },
+    "rentalSummary": {
+      "discountType": "percentage",
+      "discountValue": 1,
+      "subtotal": 300,
+      "discount": 3,
+      "totalPrice": 297
+    },
+    "_id": "676c713d4ecfd30beae2368c",
+    "customer": {
+      "_id": "674f6a39c33f69807dd061a9",
+      "name": "Ahmed Ibrahim",
+      "phoneNumber": "01065619209",
+      "email": "ahmedibrahimhassan654@gmail.com\n"
+    },
+    "state": "pending",
+    "cars": [
+      {
+        "carImages": {
+          "front": [],
+          "driverFront": [],
+          "passengerFront": [],
+          "driverRear": [],
+          "passengerRear": [],
+          "rear": []
+        },
+        "carId": {
+          "_id": "676c6f6a49f8a4a9a483ed49",
+          "carId": "CARAhmed",
+          "vinNumber": "1HGCM82633AVin2Aahmed",
+          "brand": "Toyota22lastA",
+          "model": "Camry2last",
+          "color": "Silver",
+          "rentalPrice": 50,
+          "state": "available"
+        },
+        "pickupDateTime": "2024-12-25T20:53:18.686Z",
+        "returnDateTime": "2024-12-31T20:53:18.686Z",
+        "rentingPeriod": "6 Days",
+        "totalPrice": 300,
+        "_id": "676c713d4ecfd30beae2368d"
+      }
+    ],
+    "orderNumber": "ORD-0001",
+    "createdBy": {
+      "_id": "676bddb66aabe51a1d57c5ed",
+      "name": "Ahmed Customer service2",
+      "email": "ahmedibrahimhassan6542@gmail.com",
+      "role": "676954beefa93bad18413fc2"
+    },
+    "paymentStatus": "Unpaid",
+    "createdAt": "2024-12-25T20:55:25.121Z",
+    "updatedAt": "2024-12-25T20:55:25.121Z",
+    "__v": 0
+  },
+  {
+    "additionalInfo": {
+      "policyNumber": "555"
+    },
+    "payment": {
+      "method": ["Visa"],
+      "reminder": "Weekly"
+    },
+    "rentalSummary": {
+      "subtotal": 600,
+      "totalPrice": 600
+    },
+    "_id": "676d79db4ecfd30beae23921",
+    "customer": {
+      "_id": "67397d5fc1cf4475818c0bd2",
+      "name": "testaa",
+      "phoneNumber": "98752",
+      "email": "testaa@testaa.testaa"
+    },
+    "state": "pending",
+    "cars": [
+      {
+        "carImages": {
+          "front": [],
+          "driverFront": [],
+          "passengerFront": [],
+          "driverRear": [],
+          "passengerRear": [],
+          "rear": []
+        },
+        "carId": {
+          "_id": "676d79664ecfd30beae2388c",
+          "carId": "AB123",
+          "vinNumber": "9876552",
+          "brand": "test",
+          "model": "test",
+          "color": "red",
+          "rentalPrice": 600,
+          "state": "available"
+        },
+        "pickupDateTime": "2024-12-26T15:43:43.087Z",
+        "returnDateTime": "2024-12-27T15:43:43.087Z",
+        "rentingPeriod": "1 Days",
+        "totalPrice": 600,
+        "_id": "676d79db4ecfd30beae23922"
+      }
+    ],
+    "orderNumber": "ORD-0002",
+    "createdBy": {
+      "_id": "675b5939465114e43655149a",
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "role": "675b584c127347f4584c3201"
+    },
+    "paymentStatus": "Unpaid",
+    "createdAt": "2024-12-26T15:44:27.650Z",
+    "updatedAt": "2024-12-26T15:44:27.650Z",
+    "__v": 0
+  },
+  {
+    "payment": {
+      "method": ["Cash"],
+      "reminder": "Biweekly"
+    },
+    "rentalSummary": {
+      "subtotal": 600,
+      "totalPrice": 600
+    },
+    "confirmation": {
+      "signatureUrl": {
+        "url": "https://res.cloudinary.com/beirut-mart/image/upload/v1735228183/skyline-car-rental-media/hr9dtoajz5a74k3g835m.jpg",
+        "public_id": "skyline-car-rental-media/hr9dtoajz5a74k3g835m"
+      }
+    },
+    "_id": "676d7a574ecfd30beae239ae",
+    "customer": {
+      "_id": "67397df6c1cf4475818c0cc6",
+      "name": "test3777",
+      "phoneNumber": "+958655577",
+      "email": "test7773@test3.com"
+    },
+    "state": "pending",
+    "cars": [
+      {
+        "carImages": {
+          "front": [],
+          "driverFront": [],
+          "passengerFront": [],
+          "driverRear": [],
+          "passengerRear": [],
+          "rear": []
+        },
+        "carId": {
+          "_id": "676d79664ecfd30beae2388c",
+          "carId": "AB123",
+          "vinNumber": "9876552",
+          "brand": "test",
+          "model": "test",
+          "color": "red",
+          "rentalPrice": 600,
+          "state": "available"
+        },
+        "pickupDateTime": "2024-12-30T15:45:32.352Z",
+        "returnDateTime": "2024-12-31T15:45:32.352Z",
+        "rentingPeriod": "1 Days",
+        "totalPrice": 600,
+        "_id": "676d7a574ecfd30beae239af"
+      },
+      {
+        "carImages": {
+          "front": [],
+          "driverFront": [],
+          "passengerFront": [],
+          "driverRear": [],
+          "passengerRear": [],
+          "rear": []
+        },
+        "carId": null,
+        "pickupDateTime": "2024-12-30T15:45:32.352Z",
+        "returnDateTime": "2024-12-31T15:45:32.352Z",
+        "rentingPeriod": "1 Days",
+        "totalPrice": 600,
+        "_id": "676d7b254ecfd30beae23a15"
+      }
+    ],
+    "orderNumber": "ORD-0003",
+    "createdBy": {
+      "_id": "675b5939465114e43655149a",
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "role": "675b584c127347f4584c3201"
+    },
+    "paymentStatus": "Unpaid",
+    "createdAt": "2024-12-26T15:46:31.224Z",
+    "updatedAt": "2024-12-26T15:49:57.835Z",
+    "__v": 1
+  },
+  {
+    "payment": {
+      "method": ["Cash"],
+      "reminder": "Weekly"
+    },
+    "rentalSummary": {
+      "subtotal": 1200,
+      "totalPrice": 1200
+    },
+    "confirmation": {
+      "signatureUrl": {
+        "url": "https://res.cloudinary.com/beirut-mart/image/upload/v1735232203/skyline-car-rental-media/gpbup6yqqunclunga5mb.jpg",
+        "public_id": "skyline-car-rental-media/gpbup6yqqunclunga5mb"
+      },
+      "notes": "xxxx"
+    },
+    "_id": "676d83214ecfd30beae23d34",
+    "customer": {
+      "_id": "676d827b4ecfd30beae23b77",
+      "name": "Hla",
+      "phoneNumber": "+987462222",
+      "email": "halaasaad95@gmail.com"
+    },
+    "state": "pending",
+    "cars": [
+      {
+        "carImages": {
+          "front": [],
+          "driverFront": [],
+          "passengerFront": [],
+          "driverRear": [],
+          "passengerRear": [],
+          "rear": []
+        },
+        "carId": {
+          "_id": "676d79664ecfd30beae2388c",
+          "carId": "AB123",
+          "vinNumber": "9876552",
+          "brand": "test",
+          "model": "test",
+          "color": "red",
+          "rentalPrice": 600,
+          "state": "available"
+        },
+        "pickupDateTime": "2025-01-01T16:23:31.410Z",
+        "returnDateTime": "2025-01-03T16:23:31.410Z",
+        "rentingPeriod": "2 Days",
+        "totalPrice": 1200,
+        "_id": "676d83214ecfd30beae23d35"
+      }
+    ],
+    "orderNumber": "ORD-0004",
+    "createdBy": {
+      "_id": "675b5939465114e43655149a",
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "role": "675b584c127347f4584c3201"
+    },
+    "paymentStatus": "Unpaid",
+    "createdAt": "2024-12-26T16:24:01.761Z",
+    "updatedAt": "2024-12-26T16:57:51.337Z",
+    "__v": 0
+  },
+  {
+    "payment": {
+      "method": ["Visa"],
+      "reminder": "Weekly"
+    },
+    "rentalSummary": {
+      "discountType": "fixed_amount",
+      "discountValue": 5,
+      "subtotal": 150,
+      "discount": 5,
+      "totalPrice": 145
+    },
+    "_id": "676e9b24f297bffd0f4b0e97",
+    "customer": {
+      "_id": "676d827b4ecfd30beae23b77",
+      "name": "Hla",
+      "phoneNumber": "+987462222",
+      "email": "halaasaad95@gmail.com"
+    },
+    "state": "pending",
+    "cars": [
+      {
+        "carImages": {
+          "front": [],
+          "driverFront": [],
+          "passengerFront": [],
+          "driverRear": [],
+          "passengerRear": [],
+          "rear": []
+        },
+        "carId": {
+          "_id": "676c6f6a49f8a4a9a483ed49",
+          "carId": "CARAhmed",
+          "vinNumber": "1HGCM82633AVin2Aahmed",
+          "brand": "Toyota22lastA",
+          "model": "Camry2last",
+          "color": "Silver",
+          "rentalPrice": 50,
+          "state": "available"
+        },
+        "pickupDateTime": "2024-12-18T12:16:48.714Z",
+        "returnDateTime": "2024-12-21T12:16:48.714Z",
+        "rentingPeriod": "3 Days",
+        "totalPrice": 150,
+        "_id": "676e9b24f297bffd0f4b0e98"
+      }
+    ],
+    "orderNumber": "ORD-0005",
+    "createdBy": {
+      "_id": "675b5939465114e43655149a",
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "role": "675b584c127347f4584c3201"
+    },
+    "paymentStatus": "Unpaid",
+    "createdAt": "2024-12-27T12:18:44.673Z",
+    "updatedAt": "2024-12-27T12:18:44.673Z",
+    "__v": 0
+  },
+  {
+    "payment": {
+      "method": ["Visa"],
+      "reminder": "Biweekly"
+    },
+    "rentalSummary": {
+      "discountType": "fixed_amount",
+      "discountValue": 10,
+      "subtotal": 600,
+      "discount": 10,
+      "totalPrice": 590
+    },
+    "_id": "676e9fd3f297bffd0f4b0fb1",
+    "customer": {
+      "_id": "676d827b4ecfd30beae23b77",
+      "name": "Hla",
+      "phoneNumber": "+987462222",
+      "email": "halaasaad95@gmail.com"
+    },
+    "state": "pending",
+    "cars": [
+      {
+        "carImages": {
+          "front": [],
+          "driverFront": [],
+          "passengerFront": [],
+          "driverRear": [],
+          "passengerRear": [],
+          "rear": []
+        },
+        "carId": {
+          "_id": "676d79664ecfd30beae2388c",
+          "carId": "AB123",
+          "vinNumber": "9876552",
+          "brand": "test",
+          "model": "test",
+          "color": "red",
+          "rentalPrice": 600,
+          "state": "available"
+        },
+        "pickupDateTime": "2024-12-06T12:37:51.692Z",
+        "returnDateTime": "2024-12-07T12:37:51.692Z",
+        "rentingPeriod": "1 Days",
+        "totalPrice": 600,
+        "_id": "676e9fd3f297bffd0f4b0fb2"
+      }
+    ],
+    "orderNumber": "ORD-0006",
+    "createdBy": {
+      "_id": "675b5939465114e43655149a",
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "role": "675b584c127347f4584c3201"
+    },
+    "paymentStatus": "Unpaid",
+    "createdAt": "2024-12-27T12:38:43.637Z",
+    "updatedAt": "2024-12-27T12:38:43.637Z",
+    "__v": 0
+  },
+  {
+    "additionalInfo": {
+      "idPhotoUrl": {
+        "url": "https://res.cloudinary.com/beirut-mart/image/upload/v1735306805/skyline-car-rental-media/b0oz13hm7ybabjnrf0ec.jpg",
+        "public_id": "skyline-car-rental-media/b0oz13hm7ybabjnrf0ec"
+      },
+      "insurancePolicyUrl": {
+        "url": "https://res.cloudinary.com/beirut-mart/image/upload/v1735306812/skyline-car-rental-media/mcpe3yeznzyeirw8vkxm.jpg",
+        "public_id": "skyline-car-rental-media/mcpe3yeznzyeirw8vkxm"
+      },
+      "policyNumber": "896566"
+    },
+    "payment": {
+      "method": ["Visa"],
+      "reminder": "Biweekly"
+    },
+    "rentalSummary": {
+      "discountType": "fixed_amount",
+      "discountValue": 10,
+      "subtotal": 650,
+      "discount": 10,
+      "totalPrice": 640
+    },
+    "confirmation": {
+      "signatureUrl": {
+        "url": "https://res.cloudinary.com/beirut-mart/image/upload/v1735323631/skyline-car-rental-media/jybkpxyzt9cuox02f1qd.jpg",
+        "public_id": "skyline-car-rental-media/jybkpxyzt9cuox02f1qd"
+      }
+    },
+    "_id": "676eaeb8e07adf5c67c42701",
+    "customer": {
+      "_id": "676d827b4ecfd30beae23b77",
+      "name": "Hla",
+      "phoneNumber": "+987462222",
+      "email": "halaasaad95@gmail.com"
+    },
+    "state": "pending",
+    "cars": [
+      {
+        "carImages": {
+          "front": [],
+          "driverFront": [],
+          "passengerFront": [],
+          "driverRear": [],
+          "passengerRear": [],
+          "rear": []
+        },
+        "carId": {
+          "_id": "676c6f6a49f8a4a9a483ed49",
+          "carId": "CARAhmed",
+          "vinNumber": "1HGCM82633AVin2Aahmed",
+          "brand": "Toyota22lastA",
+          "model": "Camry2last",
+          "color": "Silver",
+          "rentalPrice": 50,
+          "state": "available"
+        },
+        "pickupDateTime": "2025-01-04T13:38:04.689Z",
+        "returnDateTime": "2025-01-05T13:38:04.689Z",
+        "rentingPeriod": "1 Days",
+        "totalPrice": 50,
+        "_id": "676eaeb8e07adf5c67c42702"
+      },
+      {
+        "carImages": {
+          "driverRear": [
+            {
+              "url": "https://res.cloudinary.com/beirut-mart/image/upload/v1735306906/skyline-car-rental-media/kfvksbnkhqd9rtgoeo5e.png",
+              "public_id": "skyline-car-rental-media/kfvksbnkhqd9rtgoeo5e",
+              "_id": "676eaeb8e07adf5c67c42704"
+            },
+            {
+              "url": "https://res.cloudinary.com/beirut-mart/image/upload/v1735306906/skyline-car-rental-media/r73xzfrpthjmsxupbmgc.png",
+              "public_id": "skyline-car-rental-media/r73xzfrpthjmsxupbmgc",
+              "_id": "676eaeb8e07adf5c67c42705"
+            }
+          ],
+          "rear": [
+            {
+              "url": "https://res.cloudinary.com/beirut-mart/image/upload/v1735306880/skyline-car-rental-media/br8fzx3iaqm3k9o2q9j3.jpg",
+              "public_id": "skyline-car-rental-media/br8fzx3iaqm3k9o2q9j3",
+              "_id": "676eaeb8e07adf5c67c42706"
+            },
+            {
+              "url": "https://res.cloudinary.com/beirut-mart/image/upload/v1735306880/skyline-car-rental-media/rywxujgannk0tzvxgeya.jpg",
+              "public_id": "skyline-car-rental-media/rywxujgannk0tzvxgeya",
+              "_id": "676eaeb8e07adf5c67c42707"
+            }
+          ],
+          "front": [],
+          "driverFront": [],
+          "passengerFront": [],
+          "passengerRear": []
+        },
+        "carId": {
+          "_id": "676d79664ecfd30beae2388c",
+          "carId": "AB123",
+          "vinNumber": "9876552",
+          "brand": "test",
+          "model": "test",
+          "color": "red",
+          "rentalPrice": 600,
+          "state": "available"
+        },
+        "pickupDateTime": "2025-01-30T13:38:20.916Z",
+        "returnDateTime": "2025-01-31T13:38:20.916Z",
+        "rentingPeriod": "1 Days",
+        "totalPrice": 600,
+        "_id": "676eaeb8e07adf5c67c42703"
+      }
+    ],
+    "orderNumber": "ORD-0007",
+    "createdBy": {
+      "_id": "675b5939465114e43655149a",
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "role": "675b584c127347f4584c3201"
+    },
+    "paymentStatus": "Unpaid",
+    "createdAt": "2024-12-27T13:42:16.126Z",
+    "updatedAt": "2024-12-27T18:20:39.701Z",
+    "__v": 0
+  },
+  {
+    "additionalInfo": {
+      "idPhotoUrl": {
+        "url": "https://res.cloudinary.com/beirut-mart/image/upload/v1735324048/skyline-car-rental-media/nnulgexo8stxyzz7d5ei.jpg",
+        "public_id": "skyline-car-rental-media/nnulgexo8stxyzz7d5ei"
+      },
+      "policyNumber": "test"
+    },
+    "payment": {
+      "method": ["Visa"],
+      "reminder": "Biweekly"
+    },
+    "rentalSummary": {
+      "subtotal": 1000,
+      "totalPrice": 1000
+    },
+    "confirmation": {
+      "signatureUrl": {
+        "url": "https://res.cloudinary.com/beirut-mart/image/upload/v1735324187/skyline-car-rental-media/au7gjvif6f5juzwjtyex.jpg",
+        "public_id": "skyline-car-rental-media/au7gjvif6f5juzwjtyex"
+      }
+    },
+    "_id": "676ef1a79adc24ecb5be1618",
+    "customer": {
+      "_id": "676d827b4ecfd30beae23b77",
+      "name": "Hla",
+      "phoneNumber": "+987462222",
+      "email": "halaasaad95@gmail.com"
+    },
+    "state": "pending",
+    "cars": [
+      {
+        "carImages": {
+          "front": [],
+          "driverFront": [],
+          "passengerFront": [],
+          "driverRear": [],
+          "passengerRear": [],
+          "rear": []
+        },
+        "carId": {
+          "_id": "676ef15b9adc24ecb5be1496",
+          "carId": "AB1234",
+          "vinNumber": "98885",
+          "brand": "Brand 1",
+          "model": "Model 1",
+          "color": "red",
+          "rentalPrice": 500,
+          "state": "available"
+        },
+        "pickupDateTime": "2024-12-27T18:26:51.786Z",
+        "returnDateTime": "2024-12-29T18:26:51.786Z",
+        "rentingPeriod": "2 Days",
+        "totalPrice": 1000,
+        "_id": "676ef1a79adc24ecb5be1619"
+      }
+    ],
+    "orderNumber": "ORD-0008",
+    "createdBy": {
+      "_id": "676ebbade07adf5c67c42c4f",
+      "name": "Hala",
+      "email": "halaasaad95@gmail.com",
+      "role": "676954beefa93bad18413fc2"
+    },
+    "paymentStatus": "Unpaid",
+    "createdAt": "2024-12-27T18:27:51.148Z",
+    "updatedAt": "2024-12-27T18:29:59.741Z",
+    "__v": 0
+  }
+]

@@ -1,0 +1,609 @@
+[
+  {
+    "id": "673bc2310f16e58a118f1fb3",
+    "carId": "DCWA-680",
+    "vinNumber": "KMHLN4AJ4MU009226",
+    "brand": "HYUNDAI",
+    "model": "ELENTRA",
+    "color": "BLACK",
+    "mileage": 50000,
+    "customer_name": "Doe",
+    "year": 2021,
+    "rentalPrice": 50,
+    "state": "available",
+    "media": [
+      {
+        "url": "",
+        "public_id": "ejii4ceaps68t297xq2v",
+        "resource_type": "image",
+        "id": "673bc26f0f16e58a118f1feb"
+      }
+    ],
+    "creatorDetails": {
+      "name": "Doe",
+      "email": "Doe@example.com"
+    },
+    "isRented": false,
+    "IsMaintenance": false,
+    "currentCustomer": [],
+    "relevantOrders": []
+  },
+  {
+    "id": "673bc30c0f16e58a118f1ffd",
+    "carId": "DCWA-763",
+    "vinNumber": "2HGFE1F93NH004085",
+    "brand": "HONDA",
+    "model": "CIVIC TOURING",
+    "color": "GREY",
+    "mileage": 50000,
+    "customer_name": "Adele",
+    "year": 2022,
+    "rentalPrice": 50,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/image/upload/v1731969803/tzhgwo8zwr0nob8vny9v.jpg",
+        "public_id": "tzhgwo8zwr0nob8vny9v",
+        "resource_type": "image",
+        "id": "673bc30c0f16e58a118f1ffe"
+      }
+    ],
+    "creatorDetails": {
+      "name": "Doe",
+      "email": "Doe@example.com"
+    },
+    "isRented": true,
+    "IsMaintenance": false,
+    "currentCustomer": [],
+    "relevantOrders": []
+  },
+  {
+    "id": "673bc39c0f16e58a118f2012",
+    "carId": "DCWA-583",
+    "vinNumber": "KMHLM4AG5NU341149",
+    "brand": "HYUNDAI",
+    "model": "ELENTRA",
+    "color": "WHITE",
+    "mileage": 50000,
+    "customer_name": "Anna",
+    "year": 2022,
+    "rentalPrice": 50,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/image/upload/v1731969948/xckhdtklqcblj15e1skg.jpg",
+        "public_id": "xckhdtklqcblj15e1skg",
+        "resource_type": "image",
+        "id": "673bc39c0f16e58a118f2013"
+      }
+    ],
+    "creatorDetails": {
+      "name": "Doe",
+      "email": "Doe@example.com"
+    },
+    "isRented": false,
+    "IsMaintenance": true,
+    "currentCustomer": [],
+    "relevantOrders": []
+  },
+  {
+    "id": "673bc42e0f16e58a118f2029",
+    "carId": "DCWA-793",
+    "vinNumber": "3MW5R7J00M8B60147",
+    "brand": "BMW",
+    "model": "SERIES 3",
+    "color": "BLACK",
+    "mileage": 70000,
+    "year": 2021,
+    "rentalPrice": 80,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/image/upload/v1731970094/rxcdx68cm0twvijxjiyf.jpg",
+        "public_id": "rxcdx68cm0twvijxjiyf",
+        "resource_type": "image",
+        "id": "673bc42e0f16e58a118f202a"
+      }
+    ],
+    "creatorDetails": {
+      "name": "Doe",
+      "email": "Doe@example.com"
+    },
+    "isRented": false,
+    "IsMaintenance": false,
+    "currentCustomer": [],
+    "relevantOrders": []
+  },
+  {
+    "id": "673bc4ce0f16e58a118f2042",
+    "carId": "DCWM-040",
+    "vinNumber": "2HGFE2F20PH110506",
+    "brand": "HONDA",
+    "model": "CIVIC",
+    "color": "BLACK",
+    "mileage": 50000,
+    "year": 2020,
+    "rentalPrice": 50,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/image/upload/v1731970254/l3zroofjilhwruoxzqsp.jpg",
+        "public_id": "l3zroofjilhwruoxzqsp",
+        "resource_type": "image",
+        "id": "673bc4ce0f16e58a118f2043"
+      }
+    ],
+    "creatorDetails": {
+      "name": "Doe",
+      "email": "Doe@example.com"
+    },
+    "isRented": false,
+    "IsMaintenance": false,
+    "currentCustomer": [],
+    "relevantOrders": []
+  },
+  {
+    "id": "673bc54a0f16e58a118f205d",
+    "carId": "DCWM-011",
+    "vinNumber": "KMHLN4AG7MU064841",
+    "brand": "HYUNDAI",
+    "model": "ELENTRA",
+    "color": "GREY",
+    "mileage": 50000,
+    "year": 2021,
+    "rentalPrice": 50,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/image/upload/v1731970377/ok5ixh5smhz2n3kdzpyg.jpg",
+        "public_id": "ok5ixh5smhz2n3kdzpyg",
+        "resource_type": "image",
+        "id": "673bc54a0f16e58a118f205e"
+      }
+    ],
+    "creatorDetails": {
+      "name": "Doe",
+      "email": "Doe@example.com"
+    },
+    "isRented": false,
+    "IsMaintenance": false,
+    "currentCustomer": [],
+    "relevantOrders": []
+  },
+  {
+    "id": "673bc60f0f16e58a118f20b3",
+    "carId": "DCWM-009",
+    "vinNumber": "1HGCY2F88PA801229",
+    "brand": "HONDA",
+    "model": "ACCORD",
+    "color": "SKY BLUE",
+    "mileage": 100000,
+    "year": 2023,
+    "rentalPrice": 50,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/image/upload/v1731970574/trmii2wrrusxnlrugtzh.jpg",
+        "public_id": "trmii2wrrusxnlrugtzh",
+        "resource_type": "image",
+        "id": "673bc60f0f16e58a118f20b4"
+      }
+    ],
+    "creatorDetails": {
+      "name": "Doe",
+      "email": "Doe@example.com"
+    },
+    "isRented": false,
+    "IsMaintenance": false,
+    "currentCustomer": [],
+    "relevantOrders": []
+  },
+  {
+    "id": "673bc6ad0f16e58a118f20d2",
+    "carId": "DCWM-029",
+    "vinNumber": "2T3R1RFV1NC305491",
+    "brand": "TOYOTA",
+    "model": "RAV4",
+    "color": "WHITE",
+    "mileage": 50000,
+    "year": 2022,
+    "rentalPrice": 50,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/image/upload/v1731970732/v6sgvnrf3rkzkbyb9b49.jpg",
+        "public_id": "v6sgvnrf3rkzkbyb9b49",
+        "resource_type": "image",
+        "id": "673bc6ad0f16e58a118f20d3"
+      }
+    ],
+    "creatorDetails": {
+      "name": "Doe",
+      "email": "Doe@example.com"
+    },
+    "isRented": false,
+    "IsMaintenance": false,
+    "currentCustomer": [],
+    "relevantOrders": []
+  },
+  {
+    "id": "673bc75c0f16e58a118f20f9",
+    "carId": "DCWA-788",
+    "vinNumber": "2HGFC2F59LH015730",
+    "brand": "HONDA",
+    "model": "CIVIC ",
+    "color": "BLACK",
+    "mileage": 50000,
+    "year": 2023,
+    "rentalPrice": 50,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/image/upload/v1731970907/yjfph7b1cwqps0llr5ri.jpg",
+        "public_id": "yjfph7b1cwqps0llr5ri",
+        "resource_type": "image",
+        "id": "673bc75c0f16e58a118f20fa"
+      }
+    ],
+    "creatorDetails": {
+      "name": "Doe",
+      "email": "Doe@example.com"
+    },
+    "isRented": false,
+    "IsMaintenance": false,
+    "currentCustomer": [],
+    "relevantOrders": []
+  },
+  {
+    "id": "673bc8270f16e58a118f211c",
+    "carId": "DCWM-349",
+    "vinNumber": "1G1ZD5ST4NF111874",
+    "brand": "CHEVROLIT",
+    "model": "MALIBU",
+    "color": "WHITE",
+    "mileage": 50000,
+    "year": 2022,
+    "rentalPrice": 50,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/image/upload/v1731971111/x2xtcytqbakvv4huztnf.jpg",
+        "public_id": "x2xtcytqbakvv4huztnf",
+        "resource_type": "image",
+        "id": "673bc8270f16e58a118f211d"
+      }
+    ],
+    "creatorDetails": {
+      "name": "Doe",
+      "email": "Doe@example.com"
+    },
+    "isRented": false,
+    "IsMaintenance": false,
+    "currentCustomer": [],
+    "relevantOrders": []
+  },
+  {
+    "id": "673bc9090f16e58a118f2141",
+    "carId": "DCWM-198",
+    "vinNumber": "KMHLM4AG8NU215710",
+    "brand": "HYUNDAI",
+    "model": "ELENTRA",
+    "color": "GREY",
+    "mileage": 50000,
+    "year": 2023,
+    "rentalPrice": 50,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/image/upload/v1731971337/px0jb3oz75jxovncqbat.jpg",
+        "public_id": "px0jb3oz75jxovncqbat",
+        "resource_type": "image",
+        "id": "673bc9090f16e58a118f2142"
+      }
+    ],
+    "creatorDetails": {
+      "name": "Doe",
+      "email": "Doe@example.com"
+    },
+    "isRented": false,
+    "IsMaintenance": false,
+    "currentCustomer": [],
+    "relevantOrders": []
+  },
+  {
+    "id": "673bca390f16e58a118f2168",
+    "carId": "DCWM-650",
+    "vinNumber": "5NPEG4JAXMH120221",
+    "brand": "HYUNDAI",
+    "model": "SONATA",
+    "color": "WHITE",
+    "mileage": 50000,
+    "year": 2021,
+    "rentalPrice": 50,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/image/upload/v1731971640/lqzp4tefs3rwzo5qy9ry.jpg",
+        "public_id": "lqzp4tefs3rwzo5qy9ry",
+        "resource_type": "image",
+        "id": "673bca390f16e58a118f2169"
+      }
+    ],
+    "creatorDetails": {
+      "name": "Doe",
+      "email": "Doe@example.com"
+    },
+    "isRented": false,
+    "IsMaintenance": false,
+    "currentCustomer": [],
+    "relevantOrders": []
+  },
+  {
+    "id": "673bcaac0f16e58a118f2191",
+    "carId": "DCWM-574",
+    "vinNumber": "2HGFC2F77LH032219",
+    "brand": "HONDA",
+    "model": "CIVIC",
+    "color": "BLACK",
+    "mileage": 50000,
+    "year": 2020,
+    "rentalPrice": 50,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/image/upload/v1731971753/y18tmkmrpolillenretn.jpg",
+        "public_id": "y18tmkmrpolillenretn",
+        "resource_type": "image",
+        "id": "673bcaac0f16e58a118f2192"
+      }
+    ],
+    "creatorDetails": {
+      "name": "Doe",
+      "email": "Doe@example.com"
+    },
+    "isRented": false,
+    "IsMaintenance": false,
+    "currentCustomer": [],
+    "relevantOrders": []
+  },
+  {
+    "id": "673bcb5d0f16e58a118f21c0",
+    "carId": "DCWM-454",
+    "vinNumber": "1C4RJHBG9N8602370",
+    "brand": "JEEP",
+    "model": " GRAND CHEROKI",
+    "color": "WHITE",
+    "mileage": 50000,
+    "year": 2022,
+    "rentalPrice": 100,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/image/upload/v1731971932/ekzkghmrusahiizcbmnk.jpg",
+        "public_id": "ekzkghmrusahiizcbmnk",
+        "resource_type": "image",
+        "id": "673bcb5d0f16e58a118f21c1"
+      }
+    ],
+    "creatorDetails": {
+      "name": "Doe",
+      "email": "Doe@example.com"
+    },
+    "isRented": false,
+    "IsMaintenance": false,
+    "currentCustomer": [],
+    "relevantOrders": []
+  },
+  {
+    "id": "673bcbd20f16e58a118f21ed",
+    "carId": "DCWM-665",
+    "vinNumber": "KMHLN2DG2RU701721",
+    "brand": "HYUNDAI",
+    "model": "ELENTRA",
+    "color": "GREY",
+    "mileage": 50000,
+    "year": 2024,
+    "rentalPrice": 50,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/image/upload/v1731972050/ybneegejo655qatqygni.jpg",
+        "public_id": "ybneegejo655qatqygni",
+        "resource_type": "image",
+        "id": "673bcbd20f16e58a118f21ee"
+      }
+    ],
+    "creatorDetails": {
+      "name": "Doe",
+      "email": "Doe@example.com"
+    },
+    "isRented": false,
+    "IsMaintenance": false,
+    "currentCustomer": [],
+    "relevantOrders": []
+  },
+  {
+    "id": "673bcc8b0f16e58a118f221c",
+    "carId": "DCWM-668",
+    "vinNumber": "KMHLN4AG9PU408173",
+    "brand": "HYUNDAI",
+    "model": "ELENTRA",
+    "color": "GREY",
+    "mileage": 50000,
+    "year": 2023,
+    "rentalPrice": 50,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/image/upload/v1731972234/ht1go37olv9sd70dcyeg.jpg",
+        "public_id": "ht1go37olv9sd70dcyeg",
+        "resource_type": "image",
+        "id": "673bcc8b0f16e58a118f221d"
+      }
+    ],
+    "creatorDetails": {
+      "name": "Doe",
+      "email": "Doe@example.com"
+    },
+    "isRented": false,
+    "IsMaintenance": false,
+    "currentCustomer": [],
+    "relevantOrders": []
+  },
+  {
+    "id": "673bcda20f16e58a118f224d",
+    "carId": "DCWM-832",
+    "vinNumber": "5NPEJ4J2XMH073539",
+    "brand": "HYNDAI",
+    "model": "SONATA",
+    "color": "GREY",
+    "mileage": 50000,
+    "year": 2021,
+    "rentalPrice": 50,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/image/upload/v1731972514/yuehgzzxcxhk0cwzcjyq.jpg",
+        "public_id": "yuehgzzxcxhk0cwzcjyq",
+        "resource_type": "image",
+        "id": "673bcda20f16e58a118f224e"
+      }
+    ],
+    "creatorDetails": {
+      "name": "Doe",
+      "email": "Doe@example.com"
+    },
+    "isRented": false,
+    "IsMaintenance": false,
+    "currentCustomer": [],
+    "relevantOrders": []
+  },
+  {
+    "id": "673bd0e70f16e58a118f2280",
+    "carId": "DCWM-922",
+    "vinNumber": "JTDBBMBE3N3502414",
+    "brand": "TOYOTA",
+    "model": "COROLLA",
+    "color": "BLACK",
+    "mileage": 50000,
+    "year": 2022,
+    "rentalPrice": 50,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/image/upload/v1731973350/orbtgtr7dtgjy61bpwyp.jpg",
+        "public_id": "orbtgtr7dtgjy61bpwyp",
+        "resource_type": "image",
+        "id": "673bd0e70f16e58a118f2281"
+      }
+    ],
+    "creatorDetails": {
+      "name": "Doe",
+      "email": "Doe@example.com"
+    },
+    "isRented": false,
+    "IsMaintenance": false,
+    "currentCustomer": [],
+    "relevantOrders": []
+  },
+  {
+    "id": "676c6f6a49f8a4a9a483ed49",
+    "carId": "CARAhmed",
+    "vinNumber": "1HGCM82633AVin2Aahmed",
+    "brand": "Toyota22lastA",
+    "model": "Camry2last",
+    "color": "Silver",
+    "mileage": 15000,
+    "year": 2025,
+    "rentalPrice": 50,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/image/upload/v1735159643/ofayalfsfbrdolrb8fw2.jpg",
+        "public_id": "ofayalfsfbrdolrb8fw2",
+        "resource_type": "image",
+        "id": "676c6f6a49f8a4a9a483ed4a"
+      },
+      {
+        "url": "https://res.cloudinary.com/image/upload/v1735159658/ugegzbp6zhzdt2ggvrmd.jpg",
+        "public_id": "ugegzbp6zhzdt2ggvrmd",
+        "resource_type": "image",
+        "id": "676c6f6a49f8a4a9a483ed4b"
+      },
+      {
+        "url": "https://res.cloudinary.com/image/upload/v1735159655/h0hoyaqaywjiafxlz3lk.jpg",
+        "public_id": "h0hoyaqaywjiafxlz3lk",
+        "resource_type": "image",
+        "id": "676c6f6a49f8a4a9a483ed4c"
+      },
+      {
+        "url": "https://res.cloudinary.com/image/upload/v1735159657/gdkqc9dk0ggqch5rwqlf.jpg",
+        "public_id": "gdkqc9dk0ggqch5rwqlf",
+        "resource_type": "image",
+        "id": "676c6f6a49f8a4a9a483ed4d"
+      },
+      {
+        "url": "https://res.cloudinary.com/image/upload/v1735159656/rizbbdlfotzoaqx4mur4.jpg",
+        "public_id": "rizbbdlfotzoaqx4mur4",
+        "resource_type": "image",
+        "id": "676c6f6a49f8a4a9a483ed4e"
+      }
+    ],
+    "creatorDetails": {
+      "name": "Ahmed Customer service2",
+      "email": "ahmedibrahimhassan6542@gmail.com"
+    },
+    "isRented": true,
+    "IsMaintenance": false,
+    "currentCustomer": {
+      "customerId": "674f6a39c33f69807dd061a9",
+      "customerName": "Ahmed Ibrahim",
+      "pickupDateTime": "2024-12-25T20:53:18.686Z",
+      "returnDateTime": "2024-12-31T20:53:18.686Z"
+    },
+    "relevantOrders": [
+      {
+        "pickupDateTime": "2024-12-25T20:53:18.686Z",
+        "returnDateTime": "2024-12-31T20:53:18.686Z"
+      }
+    ]
+  },
+  {
+    "id": "676d79664ecfd30beae2388c",
+    "carId": "AB123",
+    "vinNumber": "9876552",
+    "brand": "test",
+    "model": "test",
+    "color": "red",
+    "mileage": 200,
+    "year": 2017,
+    "rentalPrice": 600,
+    "state": "available",
+    "media": [
+      {
+        "url": "https://res.cloudinary.com/image/upload/v1735227750/ciysmz02fuk6wugnla17.jpg",
+        "public_id": "ciysmz02fuk6wugnla17",
+        "resource_type": "image",
+        "id": "676d79664ecfd30beae2388d"
+      }
+    ],
+    "creatorDetails": {
+      "name": "Doe",
+      "email": "Doe@example.com"
+    },
+    "isRented": true,
+    "IsMaintenance": false,
+    "currentCustomer": {
+      "customerId": "67397d5fc1cf4475818c0bd2",
+      "customerName": "testaa",
+      "pickupDateTime": "2024-12-26T15:43:43.087Z",
+      "returnDateTime": "2024-12-27T15:43:43.087Z"
+    },
+    "relevantOrders": [
+      {
+        "pickupDateTime": "2024-12-26T15:43:43.087Z",
+        "returnDateTime": "2024-12-27T15:43:43.087Z"
+      }
+    ]
+  }
+]
